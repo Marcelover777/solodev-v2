@@ -1,0 +1,17 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "solodev-v2",
+  "description": "Marketplace do solodev v2 — o ciclo completo de engenharia disciplinada para o dev solo, em PT-BR.",
+  "owner": {
+    "name": "Marcelover777",
+    "url": "https://github.com/Marcelover777"
+  },
+  "plugins": [
+    {
+      "name": "solodev-v2",
+      "description": "Seis skills de Claude Code (PT-BR) que dão disciplina de engenharia ao dev solo: contexto, brainstorm, plano, coding, fix e ship.",
+      "source": "./",
+      "category": "productivity"
+    }
+  ]
+}

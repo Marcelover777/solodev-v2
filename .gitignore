@@ -1,0 +1,23 @@
+# Dependências
+node_modules/
+
+# Build / artefatos
+dist/
+
+# Logs
+*.log
+
+# Ambiente / segredos
+.env
+.env.local
+
+# Sistema operacional
+.DS_Store
+
+# Editores / IDEs
+.idea/
+.vscode/
+
+# Planos gerados por-projeto (são output da ferramenta, não versionamos no repo da ferramenta).
+# NOTA: examples/ é material de demonstração e DEVE ser versionado — não ignorar.
+.plans/
