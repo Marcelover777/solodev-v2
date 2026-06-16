@@ -1,6 +1,8 @@
 # solodev v2
 
-> **Plan > Vibes.** Seis skills de Claude Code para o dev solo que fala a ideia solta e quer disciplina de engenharia do outro lado.
+> **Plan > Vibes.** Sete skills de Claude Code para o dev solo que fala a ideia solta e quer disciplina de engenharia do outro lado.
+
+[![validate](https://github.com/Marcelover777/solodev-v2/actions/workflows/validate.yml/badge.svg)](https://github.com/Marcelover777/solodev-v2/actions/workflows/validate.yml)
 
 <sub>English version: [README.en.md](README.en.md)</sub>
 
@@ -42,6 +44,7 @@ Baseado no [solodev](https://github.com/calneymgp/solodev) original (3 skills), 
 | `/dev-coding` | PLAN.md pronto | Executa task a task: lê `read_first`, mostra progresso X/N, guarda de escopo, protocolo de drift, TDD tracer-bullet, commits atômicos `[task-XX]` |
 | `/dev-fix` | Bug, a qualquer momento | Triagem trivial/real/arquitetural → modo rápido ou loop de 6 fases (feedback loop → reproduz → hipóteses falsificáveis → 1 probe por hipótese → fix + regressão → cleanup) |
 | `/dev-ship` | Última task feita, ou "tá pronto?" | Suite completa + Must-Haves + demo script + revisão de diff (restos, bugs) + lente de segurança + `SUMMARY.md` + arquiva o plano |
+| `/dev-help` | Perdido no fluxo | Cartão de referência: o ciclo, qual skill usar agora e onde ficam os outputs (one-shot, não vira modo) |
 
 ## Como funciona
 
@@ -74,6 +77,8 @@ Novo nesta release:
 - **Plugin de Claude Code** — instala via marketplace, sem clonar nada.
 - **Installer cross-platform** — `install.sh` e `install.ps1` para quem prefere script (macOS/Linux/Windows).
 - **Exemplo end-to-end** — `examples/realtime-presence/` com `BRIEF.md`, `PLAN.md` e `SUMMARY.md` reais de uma feature passando pelo ciclo inteiro.
+- **`/dev-help`** — cartão de referência in-session: qual skill usar agora, sem sair do terminal.
+- **Auto-validação em CI** — `scripts/validate.mjs` checa frontmatter das skills, manifests e docs a cada push. A suíte que prega critério verificável valida a si mesma.
 
 ## Por que essas melhorias são fodas
 

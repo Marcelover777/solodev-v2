@@ -1,6 +1,6 @@
 # solodev v2
 
-> **Plan > Vibes.** Six Claude Code skills for the solo dev who blurts the loose idea and wants engineering discipline coming back the other way.
+> **Plan > Vibes.** Seven Claude Code skills for the solo dev who blurts the loose idea and wants engineering discipline coming back the other way.
 
 *Versão em português: [README.md](README.md).*
 
@@ -33,6 +33,7 @@ Built on top of the original [solodev](https://github.com/calneymgp/solodev) (3 
 | `/dev-coding` | PLAN.md ready | Executes task by task with visible progress, scope guard, drift protocol, atomic `[task-XX]` commits |
 | `/dev-fix` | Bug, any time | Trivial/real/architectural triage → fast mode or 6-phase loop (feedback loop → falsifiable hypotheses → probe → fix + regression → cleanup) |
 | `/dev-ship` | Last task done / "is it ready?" | Full suite + Must-Haves + demo script + diff review (leftovers, bugs) + security lens + SUMMARY.md + archive |
+| `/dev-help` | Lost in the flow | Reference card: the lifecycle, which skill to use now, where outputs live (one-shot, not a mode) |
 
 ## How it works
 
@@ -61,6 +62,8 @@ Each upgrade targets a specific way solo dev work goes sideways:
 - **Scope guard + drift protocol** — task bloated 2×? Implementation diverged from the plan? Stop, record, re-plan. The plan always tells the truth.
 - **`/dev-fix`** — the diagnose loop is now its own skill: bugs don't need a plan, they need method.
 - **`/dev-ship`** — "done" became a verified state: suite + Must-Haves + 60s demo + clean diff + security pass.
+- **`/dev-help`** — an in-session reference card: which skill to use right now, without leaving the terminal.
+- **Self-validation in CI** — `scripts/validate.mjs` checks skill frontmatter, manifests, and docs on every push. The suite that preaches verifiable criteria validates itself.
 
 ### Why these upgrades are awesome
 

@@ -21,3 +21,6 @@ dist/
 # Planos gerados por-projeto (são output da ferramenta, não versionamos no repo da ferramenta).
 # NOTA: examples/ é material de demonstração e DEVE ser versionado — não ignorar.
 .plans/
+
+# Guias/PDFs gerados localmente (ficam só na máquina).
+*.pdf

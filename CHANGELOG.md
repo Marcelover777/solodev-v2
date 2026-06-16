@@ -5,6 +5,21 @@ Todas as mudanças relevantes deste projeto são documentadas aqui.
 O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e o projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 
+## [2.1.0] - 2026-06-15
+
+Polimento de pacote: uma skill utilitária a mais, auto-validação e guia de contribuição.
+
+### Added
+
+- **`/dev-help` (skill nova)** — cartão de referência in-session: mostra o ciclo, qual skill usar em cada momento e onde ficam os outputs. Exibição one-shot, não é um modo persistente.
+- **Auto-validação (`scripts/validate.mjs`)** — valida o pacote sem dependências: frontmatter de cada skill (`name`/`description`), templates referenciados existem, JSON dos manifests válido e coerente, e que **toda skill** aparece nos instaladores e nos READMEs.
+- **CI (`.github/workflows/validate.yml`)** — roda o validador e `bash -n install.sh` a cada push/PR.
+- **`CONTRIBUTING.md`** — layout do projeto, como adicionar uma skill e como rodar o validador.
+
+### Changed
+
+- `plugin.json` ganhou `version` e passou a anunciar sete skills; READMEs, `INSTALL.md` e instaladores atualizados para incluir `/dev-help`.
+
 ## [2.0.0] - 2026-06-15
 
 Primeira release pública do solodev v2 — o ciclo de engenharia completo para o dev solo, em PT-BR. Estende o [solodev original de calneymgp](https://github.com/calneymgp/solodev) (3 skills) para as seis fases do ciclo de vida, mais empacotamento e docs.
@@ -30,4 +45,5 @@ Primeira release pública do solodev v2 — o ciclo de engenharia completo para 
 
 O solodev v2 estende o **[solodev de calneymgp](https://github.com/calneymgp/solodev)**, a baseline (v1) de 3 skills. Licença MIT, com os créditos ao trabalho original preservados em `LICENSE` e no `README`.
 
+[2.1.0]: https://github.com/Marcelover777/solodev-v2/releases/tag/v2.1.0
 [2.0.0]: https://github.com/Marcelover777/solodev-v2/releases/tag/v2.0.0

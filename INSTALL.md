@@ -25,7 +25,7 @@ Ou pelo menu interativo: rode `/plugin`, escolha **Marketplace → solodev-v2** 
 
 ## B. Script de instalação
 
-Copia as seis skills direto para o `.claude/skills/` do projeto.
+Copia as sete skills direto para o `.claude/skills/` do projeto.
 
 **macOS / Linux:**
 
@@ -77,7 +77,7 @@ No Windows, copie `skills\*` para `.claude\skills\` (projeto) ou `%USERPROFILE%\
 
 ## Verificar
 
-Abra o projeto no Claude Code e digite `/`. As seis skills devem aparecer. **O prefixo depende do método de instalação:**
+Abra o projeto no Claude Code e digite `/`. As sete skills devem aparecer. **O prefixo depende do método de instalação:**
 
 **Via plugin (método A)** — comandos com namespace `solodev-v2:`:
 
@@ -87,6 +87,7 @@ Abra o projeto no Claude Code e digite `/`. As seis skills devem aparecer. **O p
 - `/solodev-v2:dev-coding`
 - `/solodev-v2:dev-fix`
 - `/solodev-v2:dev-ship`
+- `/solodev-v2:dev-help`
 
 **Via script ou manual (métodos B e C)** — comandos puros:
 
@@ -96,6 +97,7 @@ Abra o projeto no Claude Code e digite `/`. As seis skills devem aparecer. **O p
 - `/dev-coding`
 - `/dev-fix`
 - `/dev-ship`
+- `/dev-help`
 
 Se não aparecerem: pelo método A, rode `/reload-plugins` (ou reabra a sessão). Pelos métodos B/C, confira se os arquivos estão em `.claude/skills/<skill>/SKILL.md` e reabra a sessão.
 
@@ -120,13 +122,14 @@ rm -rf .claude/skills/dev-context \
        .claude/skills/dev-plan \
        .claude/skills/dev-coding \
        .claude/skills/dev-fix \
-       .claude/skills/dev-ship
+       .claude/skills/dev-ship \
+       .claude/skills/dev-help
 ```
 
 No Windows:
 
 ```powershell
-Foreach ($s in 'dev-context','dev-brainstorm','dev-plan','dev-coding','dev-fix','dev-ship') {
+Foreach ($s in 'dev-context','dev-brainstorm','dev-plan','dev-coding','dev-fix','dev-ship','dev-help') {
     Remove-Item -Recurse -Force ".claude\skills\$s" -ErrorAction SilentlyContinue
 }
 ```
