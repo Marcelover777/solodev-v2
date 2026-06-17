@@ -13,7 +13,7 @@
 set -euo pipefail
 
 REPO_URL="https://github.com/Marcelover777/solodev-v2.git"
-SKILLS=(dev-context dev-brainstorm dev-plan dev-coding dev-fix dev-ship dev-help)
+SKILLS=(dev-start dev-stack dev-design dev-setup dev-roadmap dev-next dev-status dev-ops dev-context dev-brainstorm dev-plan dev-coding dev-fix dev-ship dev-help)
 
 # Diretório alvo (1º argumento) — onde fica o .claude/ do projeto.
 TARGET_DIR="${1:-$(pwd)}"
@@ -77,4 +77,4 @@ done
 
 echo ""
 echo "Pronto. As skills do solodev v2 estão em $DEST"
-echo "Abra este projeto no Claude Code e use /dev-context, /dev-brainstorm, /dev-plan, /dev-coding, /dev-fix, /dev-ship, /dev-help."
+echo "Abra este projeto no Claude Code. Comece por /dev-start (modo guiado) — ou /dev-help para o mapa dos 15 comandos."

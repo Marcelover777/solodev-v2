@@ -17,7 +17,7 @@ param(
 $ErrorActionPreference = 'Stop'
 
 $RepoUrl = 'https://github.com/Marcelover777/solodev-v2.git'
-$Skills  = @('dev-context', 'dev-brainstorm', 'dev-plan', 'dev-coding', 'dev-fix', 'dev-ship', 'dev-help')
+$Skills  = @('dev-start', 'dev-stack', 'dev-design', 'dev-setup', 'dev-roadmap', 'dev-next', 'dev-status', 'dev-ops', 'dev-context', 'dev-brainstorm', 'dev-plan', 'dev-coding', 'dev-fix', 'dev-ship', 'dev-help')
 
 # --- Descobrir a fonte das skills ------------------------------------------
 #
@@ -77,7 +77,7 @@ try {
 
     Write-Host ''
     Write-Host "Pronto. As skills do solodev v2 estao em $dest"
-    Write-Host 'Abra este projeto no Claude Code e use /dev-context, /dev-brainstorm, /dev-plan, /dev-coding, /dev-fix, /dev-ship, /dev-help.'
+    Write-Host 'Abra este projeto no Claude Code. Comece por /dev-start (modo guiado) - ou /dev-help para o mapa dos 15 comandos.'
 }
 finally {
     if ($CleanupTmp -and (Test-Path $CleanupTmp)) {

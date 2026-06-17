@@ -1,0 +1,84 @@
+# .github/workflows/ci.yml
+# CI = o robô do GitHub que roda os testes pra você a cada push e PR.
+# Política de timing (ver TESTING.md): rápido roda sempre, lento roda raro.
+#   lint + typecheck + unit  -> a cada push e pull request
+#   e2e / harness            -> só em PR-pra-main, manual ou de madrugada
+#
+# Este arquivo assume npm. Se o projeto usa pnpm/yarn/bun, troque os passos
+# de setup e install (ver comentários). Confira na hora a versão atual das
+# actions (actions/checkout, actions/setup-node) — elas mudam de major.
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch: {}
+  schedule:
+    # nightly às 03:00 UTC — só para os testes lentos (job e2e abaixo)
+    - cron: "0 3 * * *"
+
+# Cancela runs antigos do mesmo branch quando você empurra de novo.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # ---------------------------------------------------------------------------
+  # RÁPIDO — roda a cada push e PR. Tem que ser veloz.
+  # ---------------------------------------------------------------------------
+  check:
+    name: lint + typecheck + unit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm # troque para 'pnpm' / 'yarn' se for o seu caso
+
+      - name: Install
+        run: npm ci # pnpm: `pnpm i --frozen-lockfile` | yarn: `yarn --immutable` | bun: `bun install`
+
+      # Cada passo abaixo só faz sentido se o script existir no package.json.
+      # Se ainda não existe, deixe comentado e ative quando criar o script.
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck # ou: npx tsc --noEmit
+
+      - name: Unit tests
+        run: npm test
+
+  # ---------------------------------------------------------------------------
+  # LENTO — e2e / harness. NÃO roda a cada push (custa minutos).
+  # Só em PR-pra-main, no botão "Run workflow" (workflow_dispatch) ou nightly.
+  # ---------------------------------------------------------------------------
+  e2e:
+    name: e2e / harness (lento)
+    runs-on: ubuntu-latest
+    if: >-
+      (github.event_name == 'pull_request' && github.base_ref == 'main') ||
+      github.event_name == 'workflow_dispatch' ||
+      github.event_name == 'schedule'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      # Descomente quando tiver e2e (Playwright/Cypress/etc.).
+      # - name: Install browsers
+      #   run: npx playwright install --with-deps
+      # - name: e2e
+      #   run: npm run test:e2e
+      - name: e2e placeholder
+        run: echo "Sem e2e ainda. Adicione um script de e2e e descomente acima."

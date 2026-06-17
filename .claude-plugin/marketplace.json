@@ -9,7 +9,7 @@
   "plugins": [
     {
       "name": "solodev-v2",
-      "description": "Sete skills de Claude Code (PT-BR) que dão disciplina de engenharia ao dev solo: contexto, brainstorm, plano, coding, fix, ship e help.",
+      "description": "Quinze skills de Claude Code (PT-BR) que levam o dev solo da ideia ao deploy: onboarding guiado (start, stack, design, setup, roadmap, next, status, ops) + ciclo de engenharia (context, brainstorm, plan, coding, fix, ship) + help.",
       "source": "./",
       "category": "productivity"
     }

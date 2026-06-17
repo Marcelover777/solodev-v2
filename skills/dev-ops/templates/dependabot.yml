@@ -1,0 +1,38 @@
+# .github/dependabot.yml
+# Dependabot = o robô do GitHub que abre PRs sozinho quando uma dependência
+# tua tem versão nova (especialmente correção de segurança). Você só revisa e
+# faz merge. Semanal pra não virar enxurrada de PR.
+#
+# Ajuste 'package-ecosystem' ao seu projeto:
+#   npm (cobre npm/pnpm/yarn/bun) | pip | cargo | gomod | bundler | composer ...
+# 'directory' é onde fica o manifesto (package.json etc.). Raiz = "/".
+
+version: 2
+updates:
+  # Dependências do seu código
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    # Junta updates pequenos num PR só, pra não poluir.
+    groups:
+      minor-and-patch:
+        update-types:
+          - "minor"
+          - "patch"
+    labels:
+      - "dependencies"
+    commit-message:
+      prefix: "chore(deps)"
+
+  # As próprias GitHub Actions usadas no ci.yml também atualizam.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "github-actions"
+    commit-message:
+      prefix: "chore(ci)"
