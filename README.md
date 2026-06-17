@@ -1,3 +1,9 @@
+<p align="center">
+  <a href="https://github.com/Marcelover777/crucible">
+    <img src="assets/banner.gif" alt="Crucible — da ideia ao deploy, um verbo só: executa o passo 0X" width="100%">
+  </a>
+</p>
+
 # Crucible
 
 > **Plan > Vibes.** Quinze skills de Claude Code que levam o dev solo da ideia ao deploy — aprendendo um comando só: *executa o passo 0X*.
