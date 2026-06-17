@@ -1,6 +1,6 @@
 ---
 name: dev-next
-description: Executa o próximo passo do ROADMAP.md com um verbo só — resolve o primeiro passo não-marcado com dependência satisfeita (fallback "qual o próximo?") ou um passo nomeado. Roda os gates antes de tudo — se faltar chave/config exigida pelo passo, PARA e dá o link exato para resolver, nunca avança bloqueado. Liberado, delega ao ciclo v2 (dev-coding, dev-plan, dev-ship…) executar o .plans/steps/0X-*.md, marca [x] no ROADMAP.md, faz append no .solodev/PROGRESS.md, atualiza o .solodev/STATUS.md e imprime o próximo passo. Use quando o usuário disser "executa o passo 03", "/dev-next", "qual o próximo passo", "próximo", "continua o roadmap", "manda o próximo", ou pedir para avançar o ROADMAP.md.
+description: Executa o próximo passo do ROADMAP.md com um verbo só — resolve o primeiro passo não-marcado com dependência satisfeita (fallback "qual o próximo?") ou um passo nomeado. Roda os gates antes de tudo — se faltar chave/config exigida pelo passo, PARA e dá o link exato para resolver, nunca avança bloqueado. Liberado, delega ao ciclo v2 (dev-coding, dev-plan, dev-ship…) executar o .plans/steps/0X-*.md, marca [x] no ROADMAP.md, faz append no .crucible/PROGRESS.md, atualiza o .crucible/STATUS.md e imprime o próximo passo. Use quando o usuário disser "executa o passo 03", "/dev-next", "qual o próximo passo", "próximo", "continua o roadmap", "manda o próximo", ou pedir para avançar o ROADMAP.md.
 ---
 
 # /dev-next — Executa o próximo passo (um verbo só)
@@ -91,7 +91,7 @@ Se a execução **falhar** (must_pass vermelho, checkpoint reprovado): **não ma
 Em ordem, sem acumular pro fim:
 
 1. **`ROADMAP.md`** — marque o passo `- [x]`.
-2. **`.solodev/PROGRESS.md`** — append de um bloco datado (journal append-only, nunca reescreva o histórico):
+2. **`.crucible/PROGRESS.md`** — append de um bloco datado (journal append-only, nunca reescreva o histórico):
 
 ```
 ## YYYY-MM-DD — passo 03: <título>
@@ -100,7 +100,7 @@ Em ordem, sem acumular pro fim:
 - Próximo: executa o passo 04
 ```
 
-3. **`.solodev/STATUS.md`** — atualize o painel (delegue ao `/dev-status` se preferir o painel completo; no mínimo, reflita o novo % de passos done).
+3. **`.crucible/STATUS.md`** — atualize o painel (delegue ao `/dev-status` se preferir o painel completo; no mínimo, reflita o novo % de passos done).
 
 ### 6. Aponte o próximo
 

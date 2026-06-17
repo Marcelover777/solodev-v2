@@ -1,6 +1,6 @@
-# Contribuir com o solodev v3
+# Contribuir com o Crucible
 
-Obrigado pelo interesse. O solodev v3 é um pacote de **skills do Claude Code** — Markdown com frontmatter YAML, sem build, sem runtime. Contribuir é editar texto e rodar um validador.
+Obrigado pelo interesse. O Crucible é um pacote de **skills do Claude Code** — Markdown com frontmatter YAML, sem build, sem runtime. Contribuir é editar texto e rodar um validador.
 
 ## As duas camadas
 
@@ -15,7 +15,7 @@ O verbo único do usuário final é **"executa o passo 0X"** (`/dev-next`); o in
 ## Layout
 
 ```
-solodev-v2/
+crucible/
 ├── skills/<nome>/SKILL.md      # corpo da skill (o que o agente carrega)
 │   └── *-TEMPLATE.md           # esqueletos citados pela skill (BRIEF/PLAN/STACK/STEP…)
 ├── src/hooks/                  # hooks opt-in de continuidade e git (file-based)
@@ -28,21 +28,21 @@ solodev-v2/
 
 **Fonte única de verdade:** cada comportamento vive em um único `SKILL.md`. Não duplique conteúdo entre skills — referencie.
 
-## `.solodev/` é do projeto do USUÁRIO, não deste repo
+## `.crucible/` é do projeto do USUÁRIO, não deste repo
 
-O v3 dá ao projeto do usuário **memória entre sessões**, file-based, numa pasta `.solodev/` na raiz **dele**:
+O v3 dá ao projeto do usuário **memória entre sessões**, file-based, numa pasta `.crucible/` na raiz **dele**:
 
-- `.solodev/PROGRESS.md` — journal append-only (o que mudou, arquivos tocados, próximo passo);
-- `.solodev/STATUS.md` — painel de estado escrito pelo `/dev-status`.
+- `.crucible/PROGRESS.md` — journal append-only (o que mudou, arquivos tocados, próximo passo);
+- `.crucible/STATUS.md` — painel de estado escrito pelo `/dev-status`.
 
-Essa pasta é gerada pelas skills no repositório de quem usa o solodev. **Nunca commite uma pasta `.solodev/` neste repo da ferramenta** — ela só existe nos projetos finais. Separe-a mentalmente de `.plans/` (planos de feature) e de `CONTEXT.md` (vocabulário). Sem worker, DB ou porta: tudo é leitura/append de arquivo Markdown.
+Essa pasta é gerada pelas skills no repositório de quem usa o Crucible. **Nunca commite uma pasta `.crucible/` neste repo da ferramenta** — ela só existe nos projetos finais. Separe-a mentalmente de `.plans/` (planos de feature) e de `CONTEXT.md` (vocabulário). Sem worker, DB ou porta: tudo é leitura/append de arquivo Markdown.
 
 ## Hooks (`src/hooks/`, opt-in)
 
 Dois hooks de Claude Code, **CommonJS**, **silent-fail** em qualquer erro de filesystem, respeitam `CLAUDE_CONFIG_DIR`, e **não** sobem worker/DB/porta:
 
-- `solodev-session-start.js` (`SessionStart`) — injeta `.solodev/PROGRESS.md` como contexto ao abrir a sessão. Só lê; inofensivo.
-- `solodev-autocommit.js` (`Stop`) — auto-commit Conventional Commits. **Opt-in de verdade:** instalar não ativa, precisa da env var `SOLODEV_AUTOCOMMIT`. Nunca faz `push`, recusa `main`/`master` sem flag explícita.
+- `crucible-session-start.js` (`SessionStart`) — injeta `.crucible/PROGRESS.md` como contexto ao abrir a sessão. Só lê; inofensivo.
+- `crucible-autocommit.js` (`Stop`) — auto-commit Conventional Commits. **Opt-in de verdade:** instalar não ativa, precisa da env var `CRUCIBLE_AUTOCOMMIT`. Nunca faz `push`, recusa `main`/`master` sem flag explícita.
 
 Ao mexer em hook: mantenha silent-fail, respeite `CLAUDE_CONFIG_DIR`, **nunca** push silencioso, e documente qualquer env var nova em `src/hooks/README.md`.
 

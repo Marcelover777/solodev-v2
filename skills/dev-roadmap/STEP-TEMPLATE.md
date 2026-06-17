@@ -54,7 +54,7 @@ Ex.: `SUPABASE_URL`, `SUPABASE_ANON_KEY` — o /dev-next confronta isto com SETU
 
 ## Quando terminar
 
-O `/dev-next` marca `[x]` no passo 0X do `ROADMAP.md`, faz append no `.solodev/PROGRESS.md`, atualiza o `.solodev/STATUS.md`, e aponta o próximo passo.
+O `/dev-next` marca `[x]` no passo 0X do `ROADMAP.md`, faz append no `.crucible/PROGRESS.md`, atualiza o `.crucible/STATUS.md`, e aponta o próximo passo.
 ```
 
 ---

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// solodev — Claude Code Stop hook (auto-commit OPT-IN).
+// Crucible — Claude Code Stop hook (auto-commit OPT-IN).
 //
 // O que faz: ao FIM de um turno, se houver mudanças no working tree, faz
 //   git add -A  &&  git commit -m "<Conventional Commits>"
@@ -7,14 +7,14 @@
 // de propósito — ver README.md desta pasta.
 //
 // Salvaguardas (DURAS — commit silencioso é perigoso, então tudo é conservador):
-//   - OPT-IN: só roda se SOLODEV_AUTOCOMMIT estiver em {1,true,yes,on}. Sem isso,
+//   - OPT-IN: só roda se CRUCIBLE_AUTOCOMMIT estiver em {1,true,yes,on}. Sem isso,
 //     no-op imediato. Instalar o hook NÃO o ativa; a env var ativa.
 //   - NUNCA push. Em hipótese nenhuma. Commit é local, reversível (`git reset`).
 //   - NUNCA na branch default (main/master) sem confirmação explícita via
-//     SOLODEV_AUTOCOMMIT_ALLOW_MAIN=1. Solo dev raramente quer auto-commit
+//     CRUCIBLE_AUTOCOMMIT_ALLOW_MAIN=1. Solo dev raramente quer auto-commit
 //     direto na main.
 //   - NUNCA --no-verify por padrão: os git hooks do projeto (pre-commit, etc.)
-//     RODAM. Só pula com SOLODEV_AUTOCOMMIT_NO_VERIFY=1, e isso é desencorajado.
+//     RODAM. Só pula com CRUCIBLE_AUTOCOMMIT_NO_VERIFY=1, e isso é desencorajado.
 //   - Evita loop: respeita stop_hook_active do payload — se um Stop já está em
 //     processamento, sai na hora.
 //   - silent-fail / non-blocking: qualquer erro de git/FS → exit 0 sem bloquear
@@ -118,7 +118,7 @@ function commitMessage(cwd) {
 
 function main() {
   // 1. Opt-in. Sem a env var, o hook não faz nada (instalar ≠ ativar).
-  if (!envOn('SOLODEV_AUTOCOMMIT')) process.exit(0);
+  if (!envOn('CRUCIBLE_AUTOCOMMIT')) process.exit(0);
 
   // 2. Parse do payload + guarda anti-loop.
   let data = {};
@@ -141,7 +141,7 @@ function main() {
   // 4. Recusa branch default sem override explícito.
   const branch = currentBranch(cwd);
   const isDefaultBranch = branch === 'main' || branch === 'master';
-  if (isDefaultBranch && !envOn('SOLODEV_AUTOCOMMIT_ALLOW_MAIN')) process.exit(0);
+  if (isDefaultBranch && !envOn('CRUCIBLE_AUTOCOMMIT_ALLOW_MAIN')) process.exit(0);
 
   // Branch detached (rebase/merge/bisect em curso) → não mexe.
   if (!branch || branch === 'HEAD') process.exit(0);
@@ -154,7 +154,7 @@ function main() {
 
   // 7. Commit. --no-verify só com opt-in adicional explícito (desencorajado).
   const args = ['commit', '-m', commitMessage(cwd)];
-  if (envOn('SOLODEV_AUTOCOMMIT_NO_VERIFY')) args.push('--no-verify');
+  if (envOn('CRUCIBLE_AUTOCOMMIT_NO_VERIFY')) args.push('--no-verify');
   gitOk(cwd, args); // sucesso ou falha (ex.: pre-commit barrou) → segue.
 
   // NUNCA push. Fim. Exit 0 sempre.

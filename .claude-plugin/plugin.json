@@ -1,6 +1,6 @@
 {
-  "name": "solodev-v2",
-  "version": "3.0.0",
+  "name": "crucible",
+  "version": "3.1.0",
   "description": "Quinze skills de Claude Code (PT-BR) que levam o dev solo da ideia ao deploy: onboarding guiado (start, stack, design, setup, roadmap, next, status, ops) + ciclo de engenharia (context, brainstorm, plan, coding, fix, ship) + help. Iniciante começa por /dev-start e depois é só 'executa o passo 0X'.",
   "author": {
     "name": "Marcelover777",

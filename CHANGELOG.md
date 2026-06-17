@@ -5,6 +5,15 @@ Todas as mudanças relevantes deste projeto são documentadas aqui.
 O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e o projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 
+## [3.1.0] - 2026-06-16
+
+Rebrand do projeto e uma doutrina nova de ambição.
+
+### Changed
+
+- **Renomeado para Crucible.** Novo nome, repositório, plugin (`crucible@crucible`, comandos namespaced `/crucible:dev-*`) e docs. Os comandos puros das skills (`/dev-*`) seguem iguais, assim como os créditos ao [solodev de calneymgp](https://github.com/calneymgp/solodev). A pasta de memória do projeto passou a ser `.crucible/`; os hooks viraram `crucible-session-start.js` / `crucible-autocommit.js`; a env var de opt-in, `CRUCIBLE_AUTOCOMMIT`.
+- **Doutrina "V1 completa, nunca MVP".** `/dev-start`, `/dev-brainstorm`, `/dev-roadmap`, `/dev-plan`, `/dev-coding`, `/dev-ship` e `/dev-stack` agora miram uma **V1 inteira, funcional e poderosa** desde o primeiro passo: implementações reais, todos os estados tratados, sem mock, dado chumbado, meia-feature ou "arrumo depois". Escopo focado, mas tudo que entra é construído de verdade.
+
 ## [3.0.0] - 2026-06-16
 
 O sistema operacional do vibe coder. O v2 cobria a disciplina de engenharia de uma feature (sete skills, ciclo `dev-context → dev-ship`). O v3 envelopa isso numa camada de onboarding zero-fricção: o iniciante fala a ideia uma vez e recebe stack explicado, projeto estético, chaves mapeadas e uma lista numerada de passos. O único comando que ele precisa decorar é **"executa o passo 0X"**. Oito skills novas, memória entre sessões e git no automático — tudo file-based, zero infra.
@@ -17,12 +26,12 @@ O sistema operacional do vibe coder. O v2 cobria a disciplina de engenharia de u
 - **`/dev-setup` (skill nova)** — chaves de API e variáveis de ambiente sem se perder: lê `STACK.md` + varre o código, gera um `.env.example` ricamente anotado e um `SETUP.md` (checklist com o link exato de cada chave), e garante o `.gitignore`.
 - **`/dev-roadmap` (skill nova)** — transforma ideia/`CONTEXT.md`/`BRIEF.md` na lista numerada de passos: escreve o `ROADMAP.md` e um `.plans/steps/0X-<slug>.md` por passo, cada um com objetivo observável, skill do ciclo, gates e dependências.
 - **`/dev-next` (skill nova)** — executa o próximo passo com um verbo só: roda os gates antes de tudo (faltou chave → **PARA e dá o link**), delega ao ciclo v2, marca `[x]` no `ROADMAP.md`, registra no journal e imprime o próximo passo.
-- **`/dev-status` (skill nova)** — painel de estado derivado de arquivos reais (`ROADMAP.md`, `PLAN.md`, `git status`, `must_pass`): escreve `.solodev/STATUS.md` com % de progresso, qualidade por parte (build/test/lint/security), erros, blockers e próximo passo. Tem modo "jornada" narrativo.
+- **`/dev-status` (skill nova)** — painel de estado derivado de arquivos reais (`ROADMAP.md`, `PLAN.md`, `git status`, `must_pass`): escreve `.crucible/STATUS.md` com % de progresso, qualidade por parte (build/test/lint/security), erros, blockers e próximo passo. Tem modo "jornada" narrativo.
 - **`/dev-ops` (skill nova)** — git/GitHub no automático: scaffolda `.github/workflows/ci.yml`, `dependabot.yml`, `PULL_REQUEST_TEMPLATE.md` e `ISSUE_TEMPLATE/`, escreve um `GITHUB.md` para leigos, define a política de timing de testes e abre PR via `gh pr create --fill`.
-- **Memória entre sessões (`.solodev/`)** — nova pasta na raiz do projeto: `PROGRESS.md` (journal append-only do que mudou) e `STATUS.md` (painel). O projeto lembra de si mesmo sem o usuário reexplicar nada — file-based, sem worker, DB ou porta.
-- **Hooks opt-in (`src/hooks/`)** — um hook `SessionStart` que injeta o `.solodev/PROGRESS.md` como contexto ao abrir a sessão (continuidade), e um hook `Stop` de auto-commit com mensagem Conventional Commits. Silent-fail, respeitam `CLAUDE_CONFIG_DIR`, instalados só com flag explícita — nunca push silencioso para `main`.
+- **Memória entre sessões (`.crucible/`)** — nova pasta na raiz do projeto: `PROGRESS.md` (journal append-only do que mudou) e `STATUS.md` (painel). O projeto lembra de si mesmo sem o usuário reexplicar nada — file-based, sem worker, DB ou porta.
+- **Hooks opt-in (`src/hooks/`)** — um hook `SessionStart` que injeta o `.crucible/PROGRESS.md` como contexto ao abrir a sessão (continuidade), e um hook `Stop` de auto-commit com mensagem Conventional Commits. Silent-fail, respeitam `CLAUDE_CONFIG_DIR`, instalados só com flag explícita — nunca push silencioso para `main`.
 - **`GLOSSARY.md`** — o que é repo, commit, deploy, API key e os termos do fluxo, em 1 linha cada, para quem nunca programou.
-- **Exemplo `examples/saas-starter/`** — walkthrough do fluxo v3: `STACK.md`, `ROADMAP.md`, `.plans/steps/01-scaffold.md` e `.solodev/STATUS.md` mostrando `/dev-start → executa o passo 0X` na prática.
+- **Exemplo `examples/saas-starter/`** — walkthrough do fluxo v3: `STACK.md`, `ROADMAP.md`, `.plans/steps/01-scaffold.md` e `.crucible/STATUS.md` mostrando `/dev-start → executa o passo 0X` na prática.
 
 ### Changed
 
@@ -45,7 +54,7 @@ Polimento de pacote: uma skill utilitária a mais, auto-validação e guia de co
 
 ## [2.0.0] - 2026-06-15
 
-Primeira release pública do solodev v2 — o ciclo de engenharia completo para o dev solo, em PT-BR. Estende o [solodev original de calneymgp](https://github.com/calneymgp/solodev) (3 skills) para as seis fases do ciclo de vida, mais empacotamento e docs.
+Primeira release pública do Crucible — o ciclo de engenharia completo para o dev solo, em PT-BR. Estende o [solodev original de calneymgp](https://github.com/calneymgp/solodev) (3 skills) para as seis fases do ciclo de vida, mais empacotamento e docs.
 
 ### Added
 
@@ -66,8 +75,9 @@ Primeira release pública do solodev v2 — o ciclo de engenharia completo para 
 
 ### Baseado em
 
-O solodev v2 estende o **[solodev de calneymgp](https://github.com/calneymgp/solodev)**, a baseline (v1) de 3 skills. Licença MIT, com os créditos ao trabalho original preservados em `LICENSE` e no `README`.
+O Crucible estende o **[solodev de calneymgp](https://github.com/calneymgp/solodev)**, a baseline (v1) de 3 skills. Licença MIT, com os créditos ao trabalho original preservados em `LICENSE` e no `README`.
 
-[3.0.0]: https://github.com/Marcelover777/solodev-v2/releases/tag/v3.0.0
-[2.1.0]: https://github.com/Marcelover777/solodev-v2/releases/tag/v2.1.0
-[2.0.0]: https://github.com/Marcelover777/solodev-v2/releases/tag/v2.0.0
+[3.1.0]: https://github.com/Marcelover777/crucible/releases/tag/v3.1.0
+[3.0.0]: https://github.com/Marcelover777/crucible/releases/tag/v3.0.0
+[2.1.0]: https://github.com/Marcelover777/crucible/releases/tag/v2.1.0
+[2.0.0]: https://github.com/Marcelover777/crucible/releases/tag/v2.0.0

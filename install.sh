@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
 #
-# solodev v2 — instalador POSIX
-# Copia as skills do solodev v2 para o .claude/skills/ de um projeto alvo.
+# Crucible — instalador POSIX
+# Copia as skills do Crucible para o .claude/skills/ de um projeto alvo.
 #
 # Uso:
 #   ./install.sh [TARGET_DIR]     # instala no diretório dado (default: diretório atual)
-#   curl -fsSL https://raw.githubusercontent.com/Marcelover777/solodev-v2/main/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/Marcelover777/crucible/main/install.sh | bash
 #
 # No modo pipe (curl|bash) não existem arquivos locais, então clonamos o repo
 # público num diretório temporário e copiamos de lá.
 #
 set -euo pipefail
 
-REPO_URL="https://github.com/Marcelover777/solodev-v2.git"
+REPO_URL="https://github.com/Marcelover777/crucible.git"
 SKILLS=(dev-start dev-stack dev-design dev-setup dev-roadmap dev-next dev-status dev-ops dev-context dev-brainstorm dev-plan dev-coding dev-fix dev-ship dev-help)
 
 # Diretório alvo (1º argumento) — onde fica o .claude/ do projeto.
@@ -40,7 +40,7 @@ else
   }
   TMP_DIR="$(mktemp -d)"
   CLEANUP_TMP="$TMP_DIR"
-  echo "==> Baixando solodev v2 de $REPO_URL ..."
+  echo "==> Baixando Crucible de $REPO_URL ..."
   git clone --depth 1 "$REPO_URL" "$TMP_DIR" >/dev/null 2>&1
   SOURCE_DIR="$TMP_DIR"
 fi
@@ -63,7 +63,7 @@ fi
 DEST="$TARGET_DIR/.claude/skills"
 mkdir -p "$DEST"
 
-echo "==> Instalando solodev v2 em: $DEST"
+echo "==> Instalando Crucible em: $DEST"
 for skill in "${SKILLS[@]}"; do
   src="$SOURCE_DIR/skills/$skill"
   if [ -d "$src" ]; then
@@ -76,5 +76,5 @@ for skill in "${SKILLS[@]}"; do
 done
 
 echo ""
-echo "Pronto. As skills do solodev v2 estão em $DEST"
+echo "Pronto. As skills do Crucible estão em $DEST"
 echo "Abra este projeto no Claude Code. Comece por /dev-start (modo guiado) — ou /dev-help para o mapa dos 15 comandos."

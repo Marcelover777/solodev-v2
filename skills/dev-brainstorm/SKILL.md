@@ -5,6 +5,8 @@ description: Grilling estruturado para estressar uma ideia de feature ANTES de p
 
 # /dev-brainstorm — Stress-test antes de planejar
 
+> **Doutrina do Crucible — V1 completa, nunca MVP.** Todo projeto mira uma **V1 inteira, poderosa e totalmente funcional** desde o início: implementações reais, todos os estados tratados, tudo que a proposta do produto genuinamente exige. Nada de mock, dado chumbado, meia-feature ou "arrumo depois" como entregável. O escopo é focado (não é o produto dos sonhos infinito), mas **tudo que entra é construído de verdade** — "pronto" é funcional e robusto, não um esqueleto pra mexer depois.
+
 Modo de **grilling estruturado**. Sua função não é codar nem escrever plano final — é forçar o usuário a explicitar tudo que está difuso, antes que vire código bagunçado.
 
 ## Princípio fundamental (Karpathy)

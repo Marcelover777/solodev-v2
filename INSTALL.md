@@ -1,4 +1,4 @@
-# Instalação — solodev v3
+# Instalação — Crucible
 
 > Requer [Claude Code](https://docs.anthropic.com/claude-code). As skills são arquivos Markdown que o Claude Code carrega de `.claude/skills/` (por projeto) ou `~/.claude/skills/` (global).
 
@@ -11,15 +11,15 @@ Escolha **um** dos três métodos abaixo.
 Instala como plugin via marketplace — atualiza junto com o repo.
 
 ```
-/plugin marketplace add Marcelover777/solodev-v2
-/plugin install solodev-v2@solodev-v2
+/plugin marketplace add Marcelover777/crucible
+/plugin install crucible@crucible
 ```
 
 Rode `/reload-plugins` para ativar sem reiniciar a sessão.
 
-Ou pelo menu interativo: rode `/plugin`, escolha **Marketplace → solodev-v2** e instale.
+Ou pelo menu interativo: rode `/plugin`, escolha **Marketplace → crucible** e instale.
 
-> **Importante:** skills instaladas por plugin são **namespaced** pelo nome do plugin. Pelo método A, os comandos aparecem como `/solodev-v2:dev-start`, `/solodev-v2:dev-roadmap`, etc. — e não como `/dev-start` puro. Os comandos puros (`/dev-start`, …) só valem para os métodos **B** e **C**, que jogam as skills direto em `.claude/skills/`.
+> **Importante:** skills instaladas por plugin são **namespaced** pelo nome do plugin. Pelo método A, os comandos aparecem como `/crucible:dev-start`, `/crucible:dev-roadmap`, etc. — e não como `/dev-start` puro. Os comandos puros (`/dev-start`, …) só valem para os métodos **B** e **C**, que jogam as skills direto em `.claude/skills/`.
 
 ---
 
@@ -30,20 +30,20 @@ Copia as quinze skills direto para o `.claude/skills/` do projeto.
 **macOS / Linux:**
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Marcelover777/solodev-v2/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/Marcelover777/crucible/main/install.sh | bash
 ```
 
 **Windows (PowerShell):**
 
 ```powershell
-irm https://raw.githubusercontent.com/Marcelover777/solodev-v2/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/Marcelover777/crucible/main/install.ps1 | iex
 ```
 
 Por padrão instala no **diretório atual**. Para apontar outro projeto, clone o repo e rode o script passando o destino:
 
 ```bash
-git clone https://github.com/Marcelover777/solodev-v2.git
-cd solodev-v2
+git clone https://github.com/Marcelover777/crucible.git
+cd crucible
 ./install.sh /caminho/do/seu/projeto        # macOS / Linux
 ```
 
@@ -79,31 +79,31 @@ No Windows, copie `skills\*` para `.claude\skills\` (projeto) ou `%USERPROFILE%\
 
 Abra o projeto no Claude Code e digite `/`. As quinze skills devem aparecer. **O prefixo depende do método de instalação:**
 
-**Via plugin (método A)** — comandos com namespace `solodev-v2:`:
+**Via plugin (método A)** — comandos com namespace `crucible:`:
 
 Onboarding (do zero ao `ROADMAP.md`):
 
-- `/solodev-v2:dev-start`
-- `/solodev-v2:dev-stack`
-- `/solodev-v2:dev-design`
-- `/solodev-v2:dev-setup`
-- `/solodev-v2:dev-roadmap`
-- `/solodev-v2:dev-next`
-- `/solodev-v2:dev-status`
-- `/solodev-v2:dev-ops`
+- `/crucible:dev-start`
+- `/crucible:dev-stack`
+- `/crucible:dev-design`
+- `/crucible:dev-setup`
+- `/crucible:dev-roadmap`
+- `/crucible:dev-next`
+- `/crucible:dev-status`
+- `/crucible:dev-ops`
 
 Ciclo de uma feature (herdado do v2):
 
-- `/solodev-v2:dev-context`
-- `/solodev-v2:dev-brainstorm`
-- `/solodev-v2:dev-plan`
-- `/solodev-v2:dev-coding`
-- `/solodev-v2:dev-fix`
-- `/solodev-v2:dev-ship`
+- `/crucible:dev-context`
+- `/crucible:dev-brainstorm`
+- `/crucible:dev-plan`
+- `/crucible:dev-coding`
+- `/crucible:dev-fix`
+- `/crucible:dev-ship`
 
 Referência:
 
-- `/solodev-v2:dev-help`
+- `/crucible:dev-help`
 
 **Via script ou manual (métodos B e C)** — comandos puros:
 
@@ -139,7 +139,7 @@ Se não aparecerem: pelo método A, rode `/reload-plugins` (ou reabra a sessão)
 
 ## Atualizar
 
-- **Plugin (método A):** `/plugin marketplace update solodev-v2` e reinstale se pedido.
+- **Plugin (método A):** `/plugin marketplace update crucible` e reinstale se pedido.
 - **Script (método B):** rode o `curl ... | bash` / `irm ... | iex` de novo — ele sobrescreve as skills existentes.
 - **Manual (método C):** `git pull` no repo e copie `skills/*` novamente.
 
@@ -147,7 +147,7 @@ Se não aparecerem: pelo método A, rode `/reload-plugins` (ou reabra a sessão)
 
 ## Desinstalar
 
-- **Plugin (método A):** `/plugin uninstall solodev-v2@solodev-v2`.
+- **Plugin (método A):** `/plugin uninstall crucible@crucible`.
 - **Script / Manual (B e C):** remova as pastas das skills:
 
 ```bash

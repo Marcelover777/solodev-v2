@@ -1,4 +1,4 @@
-# solodev v3
+# Crucible
 
 > **Plan > Vibes.** Fifteen Claude Code skills that take the beginner from a loose idea to a deployed project — learning **one verb**: *"run step 0X."*
 
@@ -7,6 +7,10 @@
 You describe the idea your way. What comes back is not a yes-man that codes the first guess — it's a system that recommends your stack and explains every piece, scaffolds a project that already looks **designed** (not generic-bootstrap gray), maps every API key with the exact link, hands you a **numbered list of steps**, and then runs them one at a time. Each step stops at a gate if a key is missing and gives you the link to fix it. Underneath, every step triggers the same engineering discipline that runs a single feature: grill the idea, write an atomic plan, execute task by task, ship only what demonstrates working.
 
 Two layers, one idea: the **onboarding** layer gets you from zero to a `ROADMAP.md`; the **cycle** layer (inherited from v2) is the engineering rigor each step triggers under the hood.
+
+## The doctrine: a complete V1, never an MVP
+
+Crucible **doesn't build MVPs**. From the very first step, every project aims at a **complete, powerful, fully-functional V1**: real implementations (no mocks, no hardcoded data, no "fix it later"), every state handled, everything the product genuinely needs to actually work. Scope stays focused — it's not the infinite dream product — but **everything in scope is built whole**. "Done" here means functional and robust, not a skeleton to patch later.
 
 ## The two layers
 
@@ -71,8 +75,8 @@ Two layers. **Onboarding** takes you from zero to a numbered roadmap; **cycle** 
 | `/dev-design` | "Make it look good / pick the colors / no template vibe" | Instant aesthetics: for the web archetype, recommends and **scaffolds** Tailwind v4 + shadcn/ui + a tweakcn theme (reading `BRIEF.md` for tone). Writes `DESIGN.md` (tokens, installed components, naming) and emits the scaffold commands as a roadmap step. Non-web archetypes degrade gracefully |
 | `/dev-setup` | "Where do I put the API key / create the .env" | Keys & integrations without getting lost: reads `STACK.md` + scans the code for env vars, then generates a richly annotated `.env.example` (what each var is, where to get it, required vs optional) and a `SETUP.md` checklist with the exact link per key. Ensures `.gitignore` covers `.env*`; warns the on-disk secret caveat |
 | `/dev-roadmap` | Idea / CONTEXT / BRIEF ready, need the sequence | Turns an idea/`CONTEXT.md`/`BRIEF.md` into the numbered `ROADMAP.md` you run one verb at a time. Each step is a demoable slice declaring its observable goal, which cycle skill it triggers, its gates and dependencies. Writes `ROADMAP.md` + one `.plans/steps/0X-<slug>.md` per step |
-| `/dev-next` | "run step 0X" / "what's next" | The execution engine. Resolves the first unticked step with satisfied dependencies (or a named step), **runs the gates first** — if a required key is missing it **stops and gives the exact link**, never advances blocked. Once cleared, delegates to the cycle, ticks `[x]` in `ROADMAP.md`, appends `.solodev/PROGRESS.md`, updates `.solodev/STATUS.md`, prints the next step |
-| `/dev-status` | "How's the project / what's left / any errors?" | State panel derived from real files: reads `ROADMAP.md`, `.plans/*/PLAN.md`, `git status` and the `must_pass` results → writes `.solodev/STATUS.md` with % progress, quality per part (build/test/lint/security ✅/⚠️/❌), where the errors are, blockers, and the next step. `journey` mode turns `.solodev/PROGRESS.md` into a motivational narrative |
+| `/dev-next` | "run step 0X" / "what's next" | The execution engine. Resolves the first unticked step with satisfied dependencies (or a named step), **runs the gates first** — if a required key is missing it **stops and gives the exact link**, never advances blocked. Once cleared, delegates to the cycle, ticks `[x]` in `ROADMAP.md`, appends `.crucible/PROGRESS.md`, updates `.crucible/STATUS.md`, prints the next step |
+| `/dev-status` | "How's the project / what's left / any errors?" | State panel derived from real files: reads `ROADMAP.md`, `.plans/*/PLAN.md`, `git status` and the `must_pass` results → writes `.crucible/STATUS.md` with % progress, quality per part (build/test/lint/security ✅/⚠️/❌), where the errors are, blockers, and the next step. `journey` mode turns `.crucible/PROGRESS.md` into a motivational narrative |
 | `/dev-ops` | "Set up GitHub / add CI / open a PR / I don't want to understand git" | Git/GitHub on autopilot: scaffolds drop-in `.github/*` (CI with lint+typecheck+unit, dependabot, PR & issue templates), writes a `GITHUB.md` that explains Actions/PR/CI/issue/branch in one plain-English paragraph each, sets the test-timing policy in `TESTING.md`, opens PRs via `gh pr create --fill`, and offers **opt-in** git hooks (auto-commit on Stop, worktree cleanup) |
 
 ### Cycle layer (the v2 engineering discipline)
@@ -121,24 +125,24 @@ The beginner doesn't want to know what a branch, PR, or CI is — they want the 
 
 Three ways. Full detail in [INSTALL.md](INSTALL.md).
 
-**1. Claude Code plugin (recommended)** — install via the marketplace, nothing to clone. Skills land namespaced as `/solodev-v2:dev-*`:
+**1. Claude Code plugin (recommended)** — install via the marketplace, nothing to clone. Skills land namespaced as `/crucible:dev-*`:
 
 ```
-/plugin marketplace add Marcelover777/solodev-v2
-/plugin install solodev-v2@solodev-v2
+/plugin marketplace add Marcelover777/crucible
+/plugin install crucible@crucible
 ```
 
 **2. Script (macOS / Linux / Windows):**
 
 ```bash
 # macOS / Linux
-git clone https://github.com/Marcelover777/solodev-v2 && cd solodev-v2
+git clone https://github.com/Marcelover777/crucible && cd crucible
 ./install.sh
 ```
 
 ```powershell
 # Windows (PowerShell)
-git clone https://github.com/Marcelover777/solodev-v2; cd solodev-v2
+git clone https://github.com/Marcelover777/crucible; cd crucible
 .\install.ps1
 ```
 
@@ -148,8 +152,8 @@ git clone https://github.com/Marcelover777/solodev-v2; cd solodev-v2
 
 File-based, zero infra: every bit of memory, state, and roadmap is readable Markdown that renders on GitHub — no worker, no DB, no background process.
 
-- **`.solodev/PROGRESS.md`** — an append-only journal. A `SessionStart` hook reads it back into context, so the project remembers itself across sessions without you re-explaining anything.
-- **`.solodev/STATUS.md`** — the state panel `/dev-status` writes: % progress, quality per part, errors, blockers, next step — all derived from real files, never a guessed number.
+- **`.crucible/PROGRESS.md`** — an append-only journal. A `SessionStart` hook reads it back into context, so the project remembers itself across sessions without you re-explaining anything.
+- **`.crucible/STATUS.md`** — the state panel `/dev-status` writes: % progress, quality per part, errors, blockers, next step — all derived from real files, never a guessed number.
 - **`ROADMAP.md` + `.plans/steps/0X-<slug>.md`** — the numbered list you run one verb at a time, one file per step.
 - **`STACK.md`, `SETUP.md`, `.env.example`, `DESIGN.md`, `GITHUB.md`** — the onboarding artifacts: the infra ADR, the keys checklist, the annotated env model, the design tokens, the plain-English git guide.
 - **`CONTEXT.md`** (repo root) — the project's long-lived memory the cycle skills align to.

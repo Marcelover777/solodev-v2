@@ -7,7 +7,7 @@ roadmap: ../ROADMAP.md
 
 # STATUS — SaaS starter
 
-> Painel de estado. Vive em `.solodev/STATUS.md`, escrito pelo `/dev-status` — **derivado de arquivos reais** (`ROADMAP.md`, `git status`, resultado dos testes), nunca de número inventado. Rode `/dev-status` a qualquer hora pra atualizar.
+> Painel de estado. Vive em `.crucible/STATUS.md`, escrito pelo `/dev-status` — **derivado de arquivos reais** (`ROADMAP.md`, `git status`, resultado dos testes), nunca de número inventado. Rode `/dev-status` a qualquer hora pra atualizar.
 
 ## Progresso
 
@@ -48,6 +48,6 @@ Legenda: ✅ verde · ⚠️ passa com aviso · ❌ quebrado · — ainda não f
 
 ## Modo jornada (resumo do `PROGRESS.md`)
 
-> Resumo narrativo do que já rolou — lido do `.solodev/PROGRESS.md`. Sem números de token (não há DB; é tudo arquivo).
+> Resumo narrativo do que já rolou — lido do `.crucible/PROGRESS.md`. Sem números de token (não há DB; é tudo arquivo).
 
 Você saiu de um diretório vazio e, em duas sessões, já tem um SaaS com **landing bonita no ar** e **lista de espera capturando e-mails de verdade** no Supabase. As fundações (UI + banco) estão de pé e verdes. Falta a parte que transforma visitante em usuário (login → dashboard) e usuário em cliente (cobrança), e aí é só publicar. Mais da metade do caminho até o no-ar. Próximo verbo: **executa o passo 03**.

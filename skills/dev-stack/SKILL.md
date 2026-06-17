@@ -5,6 +5,8 @@ description: Advisor de infra e conectores — ajuda o iniciante a entender a ar
 
 # /dev-stack — O porquê de cada peça, sem cravar número
 
+> **Doutrina do Crucible — V1 completa, nunca MVP.** Todo projeto mira uma **V1 inteira, poderosa e totalmente funcional** desde o início: implementações reais, todos os estados tratados, tudo que a proposta do produto genuinamente exige. Nada de mock, dado chumbado, meia-feature ou "arrumo depois" como entregável. O escopo é focado (não é o produto dos sonhos infinito), mas **tudo que entra é construído de verdade** — "pronto" é funcional e robusto, não um esqueleto pra mexer depois.
+
 O iniciante trava na infra: banco? auth? onde faz deploy? é grátis? Esta skill responde com **recomendação opinativa + o porquê em 1 linha + 1 alternativa**, avisa as armadilhas de free-tier e **linka a pricing oficial** — nunca decide no escuro nem inventa preço. O resultado vira o `STACK.md` (um ADR), que o `/dev-setup` lê para gerar `.env.example` e o `/dev-design` lê para saber o framework.
 
 Ela **recomenda e registra a decisão**. Não instala nada, não pega chave (isso é `/dev-setup`), não veste a UI (isso é `/dev-design`).

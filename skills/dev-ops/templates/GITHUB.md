@@ -1,6 +1,6 @@
 # GITHUB.md — git e GitHub em português de gente
 
-Você **não precisa entender git** pra usar este projeto. O solodev cuida disso.
+Você **não precisa entender git** pra usar este projeto. O Crucible cuida disso.
 Mas se quiser saber o que está acontecendo quando vê essas palavras, aqui está
 cada uma em um parágrafo. Sem jargão escondido.
 
@@ -23,7 +23,7 @@ branch na mão — as ferramentas fazem.
 
 Um "salvar" com etiqueta. Cada commit é um pacote de mudanças com uma frase
 explicando o que mudou (ex.: `feat: adiciona login`). É a unidade do histórico:
-se algo quebrar, você descobre **qual commit** quebrou e volta só ele. O solodev
+se algo quebrar, você descobre **qual commit** quebrou e volta só ele. O Crucible
 pode fazer commits sozinho pra você (auto-commit, se você ligar) — aí você nunca
 digita `git commit`.
 
@@ -32,7 +32,7 @@ digita `git commit`.
 Um "pedido pra juntar". Quando o trabalho de um branch está pronto, você abre um
 PR: é uma página no GitHub que mostra **exatamente o que muda** e deixa o robô
 (CI) testar tudo antes de virar oficial. É o portão de qualidade. Quando o PR
-está verde e revisado, você faz **merge** (junta na `main`). No solodev, o
+está verde e revisado, você faz **merge** (junta na `main`). No Crucible, o
 comando `/dev-ship` abre o PR pra você com `gh pr create --fill`.
 
 ## CI (Integração Contínua — "o robô que testa")
@@ -66,5 +66,5 @@ Quase nada disso na mão:
 - **Ver se está tudo verde** → `/dev-status`, ou a aba Actions no GitHub.
 - **Reportar um bug** → abra uma issue (o template já guia).
 
-O resto — branch, merge, CI — o solodev e o GitHub fazem por baixo. Você fala a
+O resto — branch, merge, CI — o Crucible e o GitHub fazem por baixo. Você fala a
 ideia e executa os passos do `ROADMAP.md`.

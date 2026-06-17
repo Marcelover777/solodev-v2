@@ -1,6 +1,6 @@
 # STATUS.md Template
 
-Salvar em `.solodev/STATUS.md` (na raiz do projeto do usuário). Sobrescrito a cada `/dev-status`. Reflete só o que arquivo real sustenta — célula sem fonte é `❓ sem dado`, nunca um valor inventado.
+Salvar em `.crucible/STATUS.md` (na raiz do projeto do usuário). Sobrescrito a cada `/dev-status`. Reflete só o que arquivo real sustenta — célula sem fonte é `❓ sem dado`, nunca um valor inventado.
 
 ---
 
@@ -68,4 +68,4 @@ Nenhum.
 - **❓ sem dado é resposta válida.** Comando inexistente ou não rodado → `❓`, nunca `✅` presumido.
 - **Erro precisa de endereço.** `arquivo:linha` + comando + 1 linha. Sem isso o painel não orienta o fix.
 - **Security em prosa quando é sério.** Segredo commitado ou `.env.local` rastreado → frase clara com arquivo, risco e remediação, fora da tabela.
-- **Sem token-economics.** Este painel não tem custo/token — solodev é file-based, não há DB pra contar.
+- **Sem token-economics.** Este painel não tem custo/token — Crucible é file-based, não há DB pra contar.

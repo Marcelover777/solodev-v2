@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// solodev v2 — validador de integridade do pacote.
+// Crucible — validador de integridade do pacote.
 //
 // Roda sem dependências (só built-ins do Node). Falha (exit 1) se o pacote
 // estiver inconsistente. É o "must_pass" do próprio repo: a suíte que prega
@@ -102,8 +102,8 @@ for (const f of ["LICENSE", "INSTALL.md", "CHANGELOG.md", "README.md", "README.e
 
 // --- Resultado --------------------------------------------------------------
 if (errors.length) {
-  console.error(`\n✗ solodev v2 — ${errors.length} problema(s):\n`);
+  console.error(`\n✗ Crucible — ${errors.length} problema(s):\n`);
   for (const e of errors) console.error(`  - ${e}`);
   process.exit(1);
 }
-console.log(`✓ solodev v2 OK — ${skills.length} skills, manifests e docs coerentes.`);
+console.log(`✓ Crucible OK — ${skills.length} skills, manifests e docs coerentes.`);

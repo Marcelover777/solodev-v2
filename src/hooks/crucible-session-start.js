@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// solodev — Claude Code SessionStart hook (continuidade entre sessões).
+// Crucible — Claude Code SessionStart hook (continuidade entre sessões).
 //
-// O que faz: se existir `.solodev/PROGRESS.md` na raiz do projeto (cwd da
+// O que faz: se existir `.crucible/PROGRESS.md` na raiz do projeto (cwd da
 // sessão), imprime o conteúdo como contexto de sessão. É a reimplementação
 // file-based da ideia "capturar → injetar memória" do claude-mem (Phase 0.1 do
 // PLAN): UM hook que faz `cat` de um arquivo Markdown — sem worker, sem DB, sem
@@ -89,7 +89,7 @@ function main() {
   }
 
   const projectDir = resolveProjectDir(data);
-  const progressPath = path.join(projectDir, '.solodev', 'PROGRESS.md');
+  const progressPath = path.join(projectDir, '.crucible', 'PROGRESS.md');
 
   const journal = readProgress(progressPath);
   if (!journal.trim()) {
@@ -98,7 +98,7 @@ function main() {
   }
 
   const header =
-    'CONTINUIDADE solodev — memória do projeto (.solodev/PROGRESS.md).\n' +
+    'CONTINUIDADE Crucible — memória do projeto (.crucible/PROGRESS.md).\n' +
     'É o journal append-only do que já foi feito. Use para retomar SEM pedir ao ' +
     'usuário reexplicar. O próximo passo costuma estar no último bloco.\n' +
     '────────────────────────────────────────\n\n';
