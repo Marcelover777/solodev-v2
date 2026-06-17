@@ -6,11 +6,7 @@
 
 <sub>English version: [README.en.md](README.en.md)</sub>
 
-Você fala a ideia do seu jeito — por voz, por fluxo de consciência, misturando o quê com o porquê. Do outro lado, em vez de um sim-senhor que sai codando o primeiro palpite, você ganha um engenheiro: ele escolhe e explica o stack, deixa o projeto bonito de saída, mapeia as chaves que você vai precisar, e monta uma **lista numerada de passos**. A partir daí, o único comando que você precisa decorar é **"executa o passo 01"**. É o anti-vibe-coding: a ideia continua sendo sua, a disciplina vem de graça.
-
-## A doutrina: V1 completa, nunca MVP
-
-O Crucible **não constrói MVP**. Desde o primeiro passo, todo projeto mira uma **V1 completa, poderosa e totalmente funcional**: implementações reais (nada de mock, dado chumbado ou "arrumo depois"), todos os estados tratados, e tudo que a proposta do produto genuinamente precisa para funcionar de verdade. O escopo é focado — não é o produto dos sonhos infinito — mas **tudo que entra na V1 é construído inteiro**. "Pronto" aqui é funcional e robusto, não um esqueleto pra mexer depois.
+Você fala a ideia do seu jeito — por voz, por fluxo de consciência, misturando o quê com o porquê. Do outro lado, em vez de um sim-senhor que sai codando o primeiro palpite, você ganha um engenheiro: ele escolhe e explica o stack, deixa o projeto bonito de saída, mapeia as chaves que você vai precisar, e monta uma **lista numerada de passos**. A partir daí, o único comando que você precisa decorar é **"executa o passo 01"**. É o anti-vibe-coding: a ideia continua sendo sua, a disciplina vem de graça — e o que sai no fim é uma V1 completa e funcional, não um MVP pela metade.
 
 ## O que mudou no v3
 

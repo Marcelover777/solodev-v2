@@ -5,8 +5,6 @@ description: Porta de entrada do vibe coder iniciante — da ideia ao projeto es
 
 # /dev-start — Da ideia ao ROADMAP.md, um verbo só
 
-> **Doutrina do Crucible — V1 completa, nunca MVP.** Todo projeto mira uma **V1 inteira, poderosa e totalmente funcional** desde o início: implementações reais, todos os estados tratados, tudo que a proposta do produto genuinamente exige. Nada de mock, dado chumbado, meia-feature ou "arrumo depois" como entregável. O escopo é focado (não é o produto dos sonhos infinito), mas **tudo que entra é construído de verdade** — "pronto" é funcional e robusto, não um esqueleto pra mexer depois.
-
 Esta skill é o **modo guiado** do Crucible: o caminho feliz para quem nunca programou. O usuário fala a ideia uma vez e sai daqui com **stack escolhido**, **projeto estético scaffoldado**, **chaves mapeadas** e um **`ROADMAP.md` numerado** — tendo aprendido **um** comando: *"executa o passo 01"*.
 
 Ela **não reimplementa** stack, design, setup ou roadmap. Ela **orquestra** as quatro skills que já fazem isso — `/dev-stack`, `/dev-design`, `/dev-setup`, `/dev-roadmap` — em sequência, **mostrando o que está montando** a cada etapa. Usuário avançado pula isso e chama as sub-skills direto.

@@ -21,7 +21,7 @@ setup: ./SETUP.md           # se aplicável
 
 ## O produto em 1 linha
 
-<O que é, e qual a V1 completa e funcional que este roadmap entrega (não um MVP — implementações reais, sem mocks). Stack em STACK.md.>
+<O que é, e qual a versão completa e funcional que este roadmap entrega. Stack em STACK.md.>
 
 ## Passos
 

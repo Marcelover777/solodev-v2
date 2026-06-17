@@ -15,8 +15,7 @@ Ela **planeja o projeto inteiro em fatias grandes**. Não é o `/dev-plan` (que 
 2. **Numeração estável + um verbo só.** Os passos são `## 01`, `## 02`… e o usuário roda `executa o passo 0X`. A numeração não muda depois de criada (inserir vira `03b` ou um passo no fim) — o `/dev-next` depende dela.
 3. **Gates explícitos.** Todo passo que precisa de chave/config declara isso. É o que deixa o `/dev-next` parar e dar o link antes de travar o iniciante.
 4. **Ordem por dependência real, não por capricho.** O passo bonito-sem-gate (scaffold + landing) vem primeiro de propósito: o iniciante vê algo no ar antes de mexer em config. Depois, a ordem segue `depends_on` de verdade.
-5. **Karpathy.** Não invente fases, épicos fantasmas nem passos especulativos. Se a V1 cabe em 5 passos, são 5. O roadmap descreve o caminho real — sem fluff, mas sem cortar função essencial.
-6. **V1 completa, nunca MVP.** O destino do roadmap é uma **V1 inteira, poderosa e totalmente funcional** — implementações reais, todos os estados tratados, tudo que a proposta do produto genuinamente exige. Nada de mock, dado chumbado, meia-feature ou "arrumo depois". Escopo é focado (não é o produto dos sonhos infinito), mas **tudo que entra é construído de verdade**.
+5. **Karpathy.** Não invente fases, épicos fantasmas nem passos especulativos. Se a versão completa cabe em 5 passos, são 5. O roadmap descreve o caminho real — sem fluff, mas sem cortar função essencial nem entregar meia-feature.
 
 ## Processo
 
@@ -28,15 +27,15 @@ Na ordem, pulando o que não existir:
 3. **Read** `STACK.md` (se houver — define o framework e quais chaves cada feature vai exigir, alimentando os gates).
 4. Se nada disso existe, faça um grilling curto (3-5 perguntas) para fechar: o que o produto faz, quem usa, e o que a **V1 completa** precisa ter para ser genuinamente funcional e poderosa (não "o mínimo para mostrar").
 
-### 2. Defina o destino (a V1 completa, não um MVP)
+### 2. Defina o destino (a versão completa)
 
-Antes de fatiar, diga em 1-2 linhas qual é o **estado final** deste roadmap: a **V1 completa e funcional** — tudo que o produto precisa para cumprir sua proposta de verdade, com implementações reais (não mocks nem meia-feature). Não é o produto dos sonhos infinito (escopo é focado), mas também **não é um MVP descartável**: o que entra na V1 sai inteiro e robusto. Recursos genuinamente fora do escopo viram um roadmap futuro — o que fica, fica completo.
+Antes de fatiar, diga em 1-2 linhas qual é o **estado final** deste roadmap: a versão **completa e funcional** que entrega a proposta do produto de verdade — implementações reais, não meia-feature. O escopo é focado (o que é genuinamente fora de escopo vira roadmap futuro), mas o que entra na V1 sai inteiro e robusto.
 
 ### 3. Fatie em passos (fatias demoáveis, em ordem)
 
 Heurísticas de granularidade:
 - **Cada passo melhora algo observável.** Depois de rodá-lo, o usuário consegue *ver* ou *fazer* algo novo.
-- **Quantos passos a V1 completa exigir.** ~5-12 é o comum; se a V1 honesta precisa de mais, tudo bem — não enxugue para um MVP. Corte só o que é especulativo/fora de escopo, nunca função essencial nem implementação real.
+- **Quantos passos a versão completa exigir.** ~5-12 é o comum; se precisar de mais, tudo bem. Corte só o que é especulativo/fora de escopo, nunca função essencial.
 - **Primeiro passo sem gate.** Scaffold + uma tela bonita (via `/dev-design`) — algo no ar sem precisar de nenhuma chave. Motivação antes de fricção.
 - **Agrupe por feature vertical, não por camada.** "Login" é um passo (schema + API + UI + teste), não três passos ("todos os schemas", "todas as APIs"…).
 
@@ -63,7 +62,7 @@ No `ROADMAP.md`, cada passo com gate diz em 1 linha o que falta (ex.: `_Gate: ch
 
 ### 6. Mostre o roadmap e confirme
 
-Em 1 mensagem: a lista numerada (título + 1 linha do que faz + gate), o destino (a V1 completa), e a pergunta: *"a ordem faz sentido? Falta algum passo para a V1 ficar genuinamente funcional? Algum é especulativo e pode sair?"*. Itere — corte o que é fluff fora de escopo, mas **nunca corte para um MVP mockado**.
+Em 1 mensagem: a lista numerada (título + 1 linha do que faz + gate), o destino, e a pergunta: *"a ordem faz sentido? Falta algum passo para ficar genuinamente funcional? Algum é especulativo e pode sair?"*. Itere — corte o que é fluff fora de escopo, sem cortar função essencial.
 
 ## Anti-padrões
 
@@ -72,8 +71,8 @@ Em 1 mensagem: a lista numerada (título + 1 linha do que faz + gate), o destino
 - ❌ **Renumerar passos já criados** — quebra o "executa o passo 0X"; insira no fim ou use sufixo.
 - ❌ **Gate omitido** — passo que precisa de chave sem declarar trava o iniciante no meio da execução.
 - ❌ **Inventar nome de env var** no gate — use só os confirmados no `STACK.md`.
-- ❌ **Roadmap de MVP** — mocks, dado chumbado, meia-feature ou "arrumo depois" na V1. O que entra sai completo e funcional.
-- ❌ **Roadmap do produto dos sonhos infinito** — escopo focado; o especulativo vira roadmap futuro, mas o que fica é construído de verdade.
+- ❌ **Passo que entrega meia-feature** (mock, dado chumbado, "arrumo depois") — o que entra no roadmap sai completo e funcional.
+- ❌ **Roadmap inflado** — escopo focado; o especulativo vira roadmap futuro, mas o que fica é construído de verdade.
 - ❌ **Primeiro passo com gate pesado** — comece por algo visível sem config (scaffold/landing).
 
 ## Onde ficam os arquivos

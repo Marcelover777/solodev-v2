@@ -12,7 +12,7 @@ Rebrand do projeto e uma doutrina nova de ambição.
 ### Changed
 
 - **Renomeado para Crucible.** Novo nome, repositório, plugin (`crucible@crucible`, comandos namespaced `/crucible:dev-*`) e docs. Os comandos puros das skills (`/dev-*`) seguem iguais, assim como os créditos ao [solodev de calneymgp](https://github.com/calneymgp/solodev). A pasta de memória do projeto passou a ser `.crucible/`; os hooks viraram `crucible-session-start.js` / `crucible-autocommit.js`; a env var de opt-in, `CRUCIBLE_AUTOCOMMIT`.
-- **Doutrina "V1 completa, nunca MVP".** `/dev-start`, `/dev-brainstorm`, `/dev-roadmap`, `/dev-plan`, `/dev-coding`, `/dev-ship` e `/dev-stack` agora miram uma **V1 inteira, funcional e poderosa** desde o primeiro passo: implementações reais, todos os estados tratados, sem mock, dado chumbado, meia-feature ou "arrumo depois". Escopo focado, mas tudo que entra é construído de verdade.
+- **Mira de V1 completa.** As skills de escopo e execução (`/dev-roadmap`, `/dev-coding`, `/dev-ship`, e o grilling do `/dev-brainstorm`) agora miram uma V1 inteira e funcional desde o início — implementações reais, sem mock nem meia-feature. Escopo focado, mas o que entra é construído de verdade.
 
 ## [3.0.0] - 2026-06-16
 

@@ -5,8 +5,6 @@ description: Fechamento de feature — verificação goal-backward antes de decl
 
 # /dev-ship — Pronto é estado verificado, não sensação
 
-> **Doutrina do Crucible — V1 completa, nunca MVP.** Todo projeto mira uma **V1 inteira, poderosa e totalmente funcional** desde o início: implementações reais, todos os estados tratados, tudo que a proposta do produto genuinamente exige. Nada de mock, dado chumbado, meia-feature ou "arrumo depois" como entregável. O escopo é focado (não é o produto dos sonhos infinito), mas **tudo que entra é construído de verdade** — "pronto" é funcional e robusto, não um esqueleto pra mexer depois.
-
 Task ✅ ≠ feature ✅. Esta skill é a barreira entre "terminei as tasks" e "isso pode ir pra produção". Roda no fim de um PLAN.md ou standalone sobre qualquer diff que o usuário queira fechar.
 
 ## Processo

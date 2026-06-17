@@ -5,8 +5,6 @@ description: Transforma um BRIEF (ou ideia já discutida) em PLAN.md atômico �
 
 # /dev-plan — Plano atômico, reset-friendly, sem código
 
-> **Doutrina do Crucible — V1 completa, nunca MVP.** Todo projeto mira uma **V1 inteira, poderosa e totalmente funcional** desde o início: implementações reais, todos os estados tratados, tudo que a proposta do produto genuinamente exige. Nada de mock, dado chumbado, meia-feature ou "arrumo depois" como entregável. O escopo é focado (não é o produto dos sonhos infinito), mas **tudo que entra é construído de verdade** — "pronto" é funcional e robusto, não um esqueleto pra mexer depois.
-
 Esta skill produz `.plans/<feature>/PLAN.md` — um documento auto-suficiente. Uma sessão nova de Claude Code, lendo só esse arquivo + o CLAUDE.md do projeto, deve conseguir executar a feature inteira via `/dev-coding`.
 
 ## Princípios não-negociáveis

@@ -4,13 +4,9 @@
 
 *Versão em português: [README.md](README.md).*
 
-You describe the idea your way. What comes back is not a yes-man that codes the first guess — it's a system that recommends your stack and explains every piece, scaffolds a project that already looks **designed** (not generic-bootstrap gray), maps every API key with the exact link, hands you a **numbered list of steps**, and then runs them one at a time. Each step stops at a gate if a key is missing and gives you the link to fix it. Underneath, every step triggers the same engineering discipline that runs a single feature: grill the idea, write an atomic plan, execute task by task, ship only what demonstrates working.
+You describe the idea your way. What comes back is not a yes-man that codes the first guess — it's a system that recommends your stack and explains every piece, scaffolds a project that already looks **designed** (not generic-bootstrap gray), maps every API key with the exact link, hands you a **numbered list of steps**, and then runs them one at a time. Each step stops at a gate if a key is missing and gives you the link to fix it. Underneath, every step triggers the same engineering discipline that runs a single feature: grill the idea, write an atomic plan, execute task by task, ship only what demonstrates working — always toward a complete, functional V1, not a throwaway MVP.
 
 Two layers, one idea: the **onboarding** layer gets you from zero to a `ROADMAP.md`; the **cycle** layer (inherited from v2) is the engineering rigor each step triggers under the hood.
-
-## The doctrine: a complete V1, never an MVP
-
-Crucible **doesn't build MVPs**. From the very first step, every project aims at a **complete, powerful, fully-functional V1**: real implementations (no mocks, no hardcoded data, no "fix it later"), every state handled, everything the product genuinely needs to actually work. Scope stays focused — it's not the infinite dream product — but **everything in scope is built whole**. "Done" here means functional and robust, not a skeleton to patch later.
 
 ## The two layers
 
