@@ -50,6 +50,7 @@ Usuário avançado pula o `/dev-start` e chama as sub-skills direto.
 | Ver o estado do projeto a qualquer hora | `/dev-status` | `.forge/STATUS.md` (progresso + qualidade) |
 | **Auditar um projeto que já existe** (não nasceu no Forger) | `/dev-audit` | `.forge/AUDIT-<data>.md` + `.forge/BACKLOG.md` semeado |
 | Pegar o próximo trabalho **não-planejado** (bug/dívida/ideia) | `/dev-next` (lê o `.forge/BACKLOG.md`) | item feito, marcado `✅`, registrado |
+| **Avançar vários de uma vez** (gated, sem confirmar um a um) | `/dev-loop` | avança numa branch isolada, para em toda frontier; níveis em `.forge/AUTONOMY.md` |
 
 ## O ciclo de uma feature (herdado do v2)
 
@@ -108,6 +109,7 @@ Sugira o comando que encaixa no momento do usuário, nesta ordem de leitura:
 
 > - **Nunca programou / projeto vazio?** Comece por `/dev-start` — ele monta tudo e te diz o primeiro passo.
 > - **Já tem um projeto e quer melhorar?** `/dev-audit` — diagnostica o que existe (read-only) e enfileira o trabalho no `.forge/BACKLOG.md`. Depois é `/dev-next`.
+> - **Quer avançar vários de uma vez?** `/dev-loop` — avança o ROADMAP/BACKLOG numa branch isolada, parando em todo gate (níveis em `.forge/AUTONOMY.md`; não é autonomia solta).
 > - **Já tem `ROADMAP.md`?** É só `executa o passo 0X` (ou `/dev-next` pro próximo livre).
 > - **Não sabe qual stack usar?** `/dev-stack` te explica e recomenda. Faltam chaves? `/dev-setup`.
 > - **Quer saber como está?** `/dev-status` (ou `/dev-status jornada` pra história do projeto).

@@ -17,7 +17,7 @@ param(
 $ErrorActionPreference = 'Stop'
 
 $RepoUrl = 'https://github.com/Marcelover777/crucible.git'
-$Skills  = @('dev-start', 'dev-audit', 'dev-stack', 'dev-design', 'dev-setup', 'dev-roadmap', 'dev-next', 'dev-status', 'dev-ops', 'dev-context', 'dev-brainstorm', 'dev-plan', 'dev-coding', 'dev-fix', 'dev-ship', 'dev-help')
+$Skills  = @('dev-start', 'dev-audit', 'dev-stack', 'dev-design', 'dev-setup', 'dev-roadmap', 'dev-next', 'dev-loop', 'dev-status', 'dev-ops', 'dev-context', 'dev-brainstorm', 'dev-plan', 'dev-coding', 'dev-fix', 'dev-ship', 'dev-help')
 
 # --- Descobrir a fonte das skills ------------------------------------------
 #

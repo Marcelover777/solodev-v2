@@ -112,6 +112,14 @@ Duas camadas, mais a referência. Iniciante começa por `/dev-start`; usuário a
 
 > O **`.forge/BACKLOG.md`** é a fila de trabalho não-planejado (bugs, dívida, ideias, achados de auditoria). O `/dev-next` consome dela quando o `ROADMAP.md` acaba ou empaca — com um seletor determinístico que **para no gate** se faltar chave.
 
+### Avançar vários de uma vez (com coleira)
+
+| Skill | Quando | O que entrega |
+|-------|--------|---------------|
+| `/dev-loop` | Quero que o Forger avance N passos/itens sem eu confirmar um a um | Runner **gated**: avança o ROADMAP/BACKLOG numa **branch isolada**, parando em toda frontier (GATE/CHECKPOINT/RED) e nos **caps** (iteração, custo, no-progress), com verificação mecânica autoritativa por iteração. Níveis em `.forge/AUTONOMY.md`: `suggest` · `step` (default) · `supervised` · `headless` (runners `scripts/loop.ps1`/`loop.sh`). |
+
+> **Não é "autonomia solta".** Subir o nível só aumenta o **lote entre gates** — nenhum gate some, e o merge da branch do loop é sempre decisão sua. A lei: **AUTONOMIA = f(VERIFICAÇÃO)**.
+
 ### Ciclo — a disciplina de engenharia de uma feature (herdado do v2)
 
 | Skill | Quando | O que entrega |

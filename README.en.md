@@ -89,6 +89,14 @@ Two layers. **Onboarding** takes you from zero to a numbered roadmap; **cycle** 
 
 > The **`.forge/BACKLOG.md`** is the queue of unplanned work (bugs, debt, ideas, audit findings). `/dev-next` pulls from it when the `ROADMAP.md` is done or stuck — with a deterministic selector that **stops at the gate** when a key is missing.
 
+### Advance several at once (on a leash)
+
+| Skill | When | What it delivers |
+|-------|------|------------------|
+| `/dev-loop` | I want Forger to advance N steps/items without confirming each one | **Gated** runner: advances the ROADMAP/BACKLOG on an **isolated branch**, stopping at every frontier (GATE/CHECKPOINT/RED) and at the **caps** (iteration, cost, no-progress), with mechanical, authoritative verification per iteration. Levels in `.forge/AUTONOMY.md`: `suggest` · `step` (default) · `supervised` · `headless` (runners `scripts/loop.ps1`/`loop.sh`). |
+
+> **Not "unleashed autonomy."** Raising the level only grows the **batch between gates** — no gate ever disappears, and merging the loop branch is always your call. The law: **AUTONOMY = f(VERIFICATION)**.
+
 ### Cycle layer (the v2 engineering discipline)
 
 | Skill | When | What it delivers |
