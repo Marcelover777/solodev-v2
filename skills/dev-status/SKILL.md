@@ -40,19 +40,22 @@ Na ordem, pulando o que não existir:
 - **Por feature:** se há `.plans/<feature>/PLAN.md`, conte `acceptance` marcados vs total. Sem PLAN, omita a linha — não estime.
 - Arredonde sempre pra baixo. `5/14` é `35%`, não `36%`.
 
-### 3. Avalie qualidade por parte (✅ / ⚠️ / ❌ / ❓)
+### 3. Avalie qualidade por parte (✅ / ⚠️ / ❌ / ❓) — com severidade
 
-Quatro partes fixas. Rode os `must_pass` que existirem; nunca presuma verde sem rodar.
+Cinco partes fixas. Rode os `must_pass` que existirem; nunca presuma verde sem rodar. **Nem todo vermelho bloqueia o ship** — a coluna "Bloqueia?" separa o que é impeditivo do que é só aviso.
 
-| Parte | Como medir | ✅ | ⚠️ | ❌ |
-|-------|-----------|----|----|----|
-| **build** | comando de build/typecheck do projeto | compila limpo | warnings | falha |
-| **test** | suite de testes | todos passam | flaky / coverage baixa | falhando |
-| **lint** | linter/formatter | limpo | warnings | erros |
-| **security** | audit de deps + `.env*` no `.gitignore` + ausência de segredo commitado | sem alerta | alerta de severidade baixa | segredo exposto / CVE alta |
+| Parte | Como medir | ✅ | ⚠️ | ❌ | Bloqueia? |
+|-------|-----------|----|----|----|-----------|
+| **build** | build/typecheck do projeto | compila limpo | warnings | falha | `❌` sim · `⚠️` não |
+| **test** (unit) | suite de testes unitários | todos passam | flaky / coverage baixa | falhando | `❌` sim |
+| **test:e2e** | suite e2e/integração (se existir) | passa | flaky | falhando | `❌` sim (se a suíte existe) |
+| **lint** | linter/formatter | limpo | warnings | erros | **não** — lint é correção, não portão |
+| **security** | audit de deps + `.env*` no `.gitignore` + ausência de segredo commitado | sem alerta | severidade baixa/média | segredo exposto / CVE alta | `❌` sim |
 
-Regra das células:
-- **❓ sem dado** quando o comando não existe no projeto ou não foi possível rodar. É honesto e melhor que um ✅ falso.
+Regra de severidade (o que trava o `executa o passo`/ship):
+- **Travam:** `build ❌`, `test ❌`, `test:e2e ❌` (quando a suíte existe), `security ❌`.
+- **Avisam, não travam:** qualquer `⚠️`, e `lint` em qualquer estado.
+- **❓ sem dado** quando o comando não existe ou não rodou — honesto, e não conta nem como verde nem como bloqueio.
 - **security** é a parte onde a prosa normal vale: se achar segredo commitado ou `.env.local` rastreado pelo git, escreva em frase clara o arquivo, o risco e o passo de remediação — não comprima isso em fragmento.
 
 ### 4. Localize os erros

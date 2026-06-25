@@ -22,12 +22,13 @@ Salvar em `.crucible/STATUS.md` (na raiz do projeto do usuário). Sobrescrito a 
 
 ## Qualidade
 
-| Parte | Estado | Como foi medido |
-|-------|--------|-----------------|
-| build    | ✅ / ⚠️ / ❌ / ❓ sem dado | `<comando de build>` |
-| test     | ✅ / ⚠️ / ❌ / ❓ sem dado | `<comando de teste>` |
-| lint     | ✅ / ⚠️ / ❌ / ❓ sem dado | `<comando de lint>` |
-| security | ✅ / ⚠️ / ❌ / ❓ sem dado | audit de deps + `.env*` no `.gitignore` |
+| Parte | Estado | Bloqueia? | Como foi medido |
+|-------|--------|-----------|-----------------|
+| build     | ✅ / ⚠️ / ❌ / ❓ sem dado | `❌` sim | `<comando de build>` |
+| test      | ✅ / ⚠️ / ❌ / ❓ sem dado | `❌` sim | `<comando de teste unit>` |
+| test:e2e  | ✅ / ⚠️ / ❌ / ❓ sem dado | `❌` sim (se existe) | `<comando e2e/integração>` |
+| lint      | ✅ / ⚠️ / ❌ / ❓ sem dado | não | `<comando de lint>` |
+| security  | ✅ / ⚠️ / ❌ / ❓ sem dado | `❌` sim | audit de deps + `.env*` no `.gitignore` |
 
 ## Erros (onde estão)
 

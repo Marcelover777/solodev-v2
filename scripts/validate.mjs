@@ -19,9 +19,15 @@ const read = (p) => readFileSync(join(ROOT, p), "utf8");
 const has = (p) => existsSync(join(ROOT, p));
 
 // --- 1. Descobre as skills (skills/<name>/SKILL.md) ------------------------
+// Pastas prefixadas com '_' (ex.: _shared/) ou '.' são ASSETS compartilhados,
+// não skills — ficam de fora da descoberta (sem SKILL.md, sem exigência de
+// aparecer nas superfícies). É como _shared/ENV-VARS.md mora aqui sem virar skill.
 const skillsDir = join(ROOT, "skills");
-const skills = readdirSync(skillsDir).filter((n) =>
-  statSync(join(skillsDir, n)).isDirectory(),
+const skills = readdirSync(skillsDir).filter(
+  (n) =>
+    !n.startsWith("_") &&
+    !n.startsWith(".") &&
+    statSync(join(skillsDir, n)).isDirectory(),
 );
 if (skills.length === 0) fail("skills/: nenhuma skill encontrada");
 

@@ -80,6 +80,20 @@ Regras de teste:
 5. Se aprovado → marque `[x]`, mate o server se for o caso
 6. Se reprovado → mude para `/dev-fix` (diagnose loop) com o problema descrito
 
+### 2b. Anti-placeholder (grep mecânico, não vibe)
+
+Antes de marcar a task `[x]`, rode um **grep mecânico nos arquivos que o diff tocou** (não no repo inteiro) procurando código de mentira que a task introduziu:
+
+```
+git diff --name-only | xargs grep -nE "TODO|FIXME|not implemented|placeholder|throw new Error\(.?[Nn]ot implemented" 2>/dev/null
+```
+
+- **Achou marca nova introduzida por esta task → a task NÃO está verde.** Implemente de verdade ou registre como drift (§4) e crie task explícita — nunca marque `[x]` por cima de um `// TODO`. "Pronto" é função real, não stub.
+- Marca **pré-existente** (não tocada pela task) não bloqueia — mas anote no `## Status Log` se cruzou com ela.
+- Em projeto sem git, grep os arquivos que você editou nesta task pelo mesmo padrão.
+
+Isto é a versão mecânica do anti-padrão "meia-feature": o que entra no passo sai inteiro (mesma régua do `/dev-roadmap` e do `/dev-ship`).
+
 ### 3. Guarda de escopo (a task inflou)
 
 Pare e re-planeje quando, no meio de uma task:
@@ -132,6 +146,7 @@ Não declare "pronto" aqui. Anuncie:
 - ❌ Escrever todos os testes TDD juntos antes de qualquer implementação
 - ❌ Refatorar enquanto está RED
 - ❌ Marcar `[x]` sem rodar a verificação
+- ❌ Marcar `[x]` por cima de `// TODO`/`FIXME`/stub introduzido pela task (meia-feature disfarçada — ver §2b)
 - ❌ Reescrever arquivo inteiro quando 5 linhas resolvem
 - ❌ Skip de hooks/lint/typecheck para "ir mais rápido"
 - ❌ Esconder falha mudando o teste em vez de corrigir o código

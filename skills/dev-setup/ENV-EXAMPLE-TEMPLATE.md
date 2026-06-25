@@ -37,9 +37,22 @@ STRIPE_WEBHOOK_SECRET=whsec_xxxxxxxxxxxx
 
 ---
 
+## Prefixo "público" por framework
+
+A var que vai pro browser leva o prefixo do framework. Fora de Next.js, **dropar o `NEXT_PUBLIC_`** e usar o prefixo certo (ou nenhum, se for só servidor):
+
+| Framework | Prefixo público |
+|-----------|-----------------|
+| Next.js | `NEXT_PUBLIC_` |
+| Vite (React/Vue/Svelte) | `VITE_` |
+| Astro / SvelteKit | `PUBLIC_` |
+| Expo / React Native | `EXPO_PUBLIC_` |
+| Create React App | `REACT_APP_` |
+
 ## Regras
 
 - **Só placeholder.** `sk_test_xxxx`, `https://xxxx...`, nunca um valor real. O arquivo é público no repo.
-- **Marque público vs secreto.** Vars com prefixo `NEXT_PUBLIC_`/`VITE_`/`PUBLIC_` vão pro browser — não são segredo, mas o valor real ainda fica só no `.env.local`.
+- **Marque público vs secreto.** Var com prefixo de framework vai pro browser — não é segredo, mas o valor real ainda fica só no `.env.local`. Sem prefixo = secreta, só servidor.
+- **Nomes só do catálogo.** Use os nomes confirmados em [`skills/_shared/ENV-VARS.md`](../_shared/ENV-VARS.md) (ou a doc oficial do serviço). Nunca invente.
 - **Comentário com link.** Cada bloco diz onde pegar. O detalhe passo-a-passo fica no `SETUP.md`.
 - **Só o que o `STACK.md` escolheu.** Não liste serviço que o projeto não usa.

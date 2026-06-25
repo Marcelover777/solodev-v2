@@ -34,6 +34,8 @@ Se todos os passos estão `- [x]`: anuncie que o roadmap acabou e sugira `/dev-s
 
 Se o passo nomeado não existe no `ROADMAP.md`: pare e liste os passos disponíveis. Não adivinhe.
 
+**Como ler `depends_on` (determinístico):** a dependência mora no **frontmatter** do `.plans/steps/0X-<slug>.md`, no campo `depends_on` — uma **lista de IDs de passo** (ex.: `depends_on: ["02"]` ou `depends_on: []`). Um passo é **elegível** no fallback quando **todos** os IDs em `depends_on` estão marcados `- [x]` no `ROADMAP.md`. O seletor é: o primeiro `- [ ]`, em ordem numérica, com `depends_on` 100% satisfeito. Sem `depends_on` (`[]`) → elegível assim que for o primeiro `- [ ]`.
+
 ### 2. Carregue o passo
 
 **Read** `.plans/steps/0X-<slug>.md` integralmente. Dele saem:
@@ -51,7 +53,9 @@ Se o passo nomeado tem `depends_on` ainda `- [ ]`: avise em 1 linha qual depend�
 2. `SETUP.md` — checklist de configuração + onde pegar cada chave.
 3. `.env.local` — as chaves de fato presentes em disco (leia só os **nomes** das vars; nunca ecoe valores).
 
-Para cada chave/config que o passo exige e **não** está presente, junte o item, o nome exato da env var (use só os nomes confirmados — `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `CLERK_SECRET_KEY`, `DATABASE_URL`, `DIRECT_URL`, `TRIGGER_SECRET_KEY`, `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`, `AUTH_SECRET`, `AUTH_URL`, `MONGODB_URI` — nunca invente nome novo) e a URL exata de onde pegar.
+> **Re-cheque o gate a cada invocação.** Releia o `.env.local` toda vez — uma chave que você adicionou desde a última tentativa **destrava** o passo. Não confie em estado de sessão anterior ("já checei isso"): o disco é a fonte da verdade, e ele pode ter mudado.
+
+Para cada chave/config que o passo exige e **não** está presente, junte o item, o nome exato da env var (use só os nomes confirmados na [lista canônica](../_shared/ENV-VARS.md) — `SUPABASE_URL`, `ANTHROPIC_API_KEY`, `STRIPE_SECRET_KEY`, … — **nunca invente nome novo**; serviço fora da lista → use o nome exato da doc oficial) e a URL exata de onde pegar.
 
 Se faltar **qualquer** item, emita este bloco e **PARE** — não execute o passo:
 
@@ -91,12 +95,13 @@ Se a execução **falhar** (must_pass vermelho, checkpoint reprovado): **não ma
 Em ordem, sem acumular pro fim:
 
 1. **`ROADMAP.md`** — marque o passo `- [x]`.
-2. **`.crucible/PROGRESS.md`** — append de um bloco datado (journal append-only, nunca reescreva o histórico):
+2. **`.crucible/PROGRESS.md`** — append de um bloco datado (journal append-only, nunca reescreva o histórico). Use o [PROGRESS-TEMPLATE.md](PROGRESS-TEMPLATE.md) como esqueleto do bloco:
 
 ```
-## YYYY-MM-DD — passo 03: <título>
+## YYYY-MM-DD HH:MM — passo 03: <título>
 - O que mudou: <1 linha>
-- Arquivos tocados: <lista curta>
+- Arquivos: <lista curta>
+- Verificação: <must_pass/teste que fechou verde>
 - Próximo: executa o passo 04
 ```
 
