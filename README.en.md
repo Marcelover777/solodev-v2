@@ -81,6 +81,14 @@ Two layers. **Onboarding** takes you from zero to a numbered roadmap; **cycle** 
 | `/dev-status` | "How's the project / what's left / any errors?" | State panel derived from real files: reads `ROADMAP.md`, `.plans/*/PLAN.md`, `git status` and the `must_pass` results → writes `.forge/STATUS.md` with % progress, quality per part (build/test/lint/security ✅/⚠️/❌), where the errors are, blockers, and the next step. `journey` mode turns `.forge/PROGRESS.md` into a motivational narrative |
 | `/dev-ops` | "Set up GitHub / add CI / open a PR / I don't want to understand git" | Git/GitHub on autopilot: scaffolds drop-in `.github/*` (CI with lint+typecheck+unit, dependabot, PR & issue templates), writes a `GITHUB.md` that explains Actions/PR/CI/issue/branch in one plain-English paragraph each, sets the test-timing policy in `TESTING.md`, opens PRs via `gh pr create --fill`, and offers **opt-in** git hooks (auto-commit on Stop, worktree cleanup) |
 
+### Audit an existing project
+
+| Skill | When | What it delivers |
+|-------|------|------------------|
+| `/dev-audit` | I already have a project (not born in Forger) and want to know its state | **Read-only** audit: scores config, architecture, security, dependency health, tests, DX, performance and UI/UX (✅/⚠️/❌/⏭️, with `file:line` evidence), writes `.forge/AUDIT-<date>.md` and **seeds `.forge/BACKLOG.md`** with gated, verifiable items. Never touches the code. |
+
+> The **`.forge/BACKLOG.md`** is the queue of unplanned work (bugs, debt, ideas, audit findings). `/dev-next` pulls from it when the `ROADMAP.md` is done or stuck — with a deterministic selector that **stops at the gate** when a key is missing.
+
 ### Cycle layer (the v2 engineering discipline)
 
 | Skill | When | What it delivers |

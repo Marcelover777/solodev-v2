@@ -48,6 +48,8 @@ Usuário avançado pula o `/dev-start` e chama as sub-skills direto.
 | Executar o próximo passo (ou um nomeado) | `executa o passo 0X` / `/dev-next` | passo feito, marcado, registrado |
 | Git/GitHub no automático (CI, PR, templates) | `/dev-ops` | `.github/*` + `GITHUB.md` + hooks opt-in |
 | Ver o estado do projeto a qualquer hora | `/dev-status` | `.forge/STATUS.md` (progresso + qualidade) |
+| **Auditar um projeto que já existe** (não nasceu no Forger) | `/dev-audit` | `.forge/AUDIT-<data>.md` + `.forge/BACKLOG.md` semeado |
+| Pegar o próximo trabalho **não-planejado** (bug/dívida/ideia) | `/dev-next` (lê o `.forge/BACKLOG.md`) | item feito, marcado `✅`, registrado |
 
 ## O ciclo de uma feature (herdado do v2)
 
@@ -105,6 +107,7 @@ Por feature:
 Sugira o comando que encaixa no momento do usuário, nesta ordem de leitura:
 
 > - **Nunca programou / projeto vazio?** Comece por `/dev-start` — ele monta tudo e te diz o primeiro passo.
+> - **Já tem um projeto e quer melhorar?** `/dev-audit` — diagnostica o que existe (read-only) e enfileira o trabalho no `.forge/BACKLOG.md`. Depois é `/dev-next`.
 > - **Já tem `ROADMAP.md`?** É só `executa o passo 0X` (ou `/dev-next` pro próximo livre).
 > - **Não sabe qual stack usar?** `/dev-stack` te explica e recomenda. Faltam chaves? `/dev-setup`.
 > - **Quer saber como está?** `/dev-status` (ou `/dev-status jornada` pra história do projeto).

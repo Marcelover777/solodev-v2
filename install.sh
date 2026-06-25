@@ -13,7 +13,7 @@
 set -euo pipefail
 
 REPO_URL="https://github.com/Marcelover777/crucible.git"
-SKILLS=(dev-start dev-stack dev-design dev-setup dev-roadmap dev-next dev-status dev-ops dev-context dev-brainstorm dev-plan dev-coding dev-fix dev-ship dev-help)
+SKILLS=(dev-start dev-audit dev-stack dev-design dev-setup dev-roadmap dev-next dev-status dev-ops dev-context dev-brainstorm dev-plan dev-coding dev-fix dev-ship dev-help)
 
 # Diretório alvo (1º argumento) — onde fica o .claude/ do projeto.
 TARGET_DIR="${1:-$(pwd)}"

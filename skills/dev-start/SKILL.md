@@ -16,6 +16,9 @@ Ela **não reimplementa** stack, design, setup ou roadmap. Ela **orquestra** as 
 | **Nunca programou / primeiro projeto** | `/dev-start` (você está no lugar certo) |
 | **Já tem o projeto montado, quer só a feature** | `/dev-brainstorm` → `/dev-plan` → `/dev-coding` |
 | **Já sabe o stack, quer pular a conversa** | chame `/dev-stack`, `/dev-design`, `/dev-setup`, `/dev-roadmap` na ordem que quiser |
+| **Já tem código e quer auditar/melhorar** | `/dev-audit` (diagnostica o que existe e enfileira o trabalho no `.forge/BACKLOG.md`) |
+
+> **Já tem código no diretório?** Se há `package.json` + `src/` (ou equivalente), faça um **CHECKPOINT** antes de montar do zero: *"Vi que já tem código aqui. Quer que eu **audite** o que existe (`/dev-audit`) em vez de começar um projeto novo?"* Não assuma — é decisão do usuário.
 
 ## Princípios não-negociáveis
 

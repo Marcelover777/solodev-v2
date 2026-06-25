@@ -104,6 +104,14 @@ Duas camadas, mais a referência. Iniciante começa por `/dev-start`; usuário a
 | `/dev-status` | Como está o projeto? O que falta? | Painel derivado de arquivo real: % de progresso, qualidade por parte (build/test/lint/security ✅/⚠️/❌), erros, blockers e o próximo passo. Escreve `.forge/STATUS.md`. Modo `jornada` = resumo narrativo motivacional. |
 | `/dev-ops` | Configura o GitHub / não quero entender git | Git/GitHub no automático: scaffolda `.github/*` (CI, dependabot, templates de PR/issue), escreve um `GITHUB.md` que explica tudo pra leigo, define o timing de testes no `TESTING.md` e oferece (opt-in) hooks de auto-commit e limpeza de worktree. |
 
+### Auditar um projeto que já existe
+
+| Skill | Quando | O que entrega |
+|-------|--------|---------------|
+| `/dev-audit` | Já tenho um projeto (não nasceu no Forger) e quero saber o estado dele | Auditoria **read-only**: pontua config, arquitetura, segurança, saúde de deps, testes, DX, performance e UI/UX (✅/⚠️/❌/⏭️, com evidência `arquivo:linha`), escreve `.forge/AUDIT-<data>.md` e **semeia o `.forge/BACKLOG.md`** com itens gated e verificáveis. Não toca no código. |
+
+> O **`.forge/BACKLOG.md`** é a fila de trabalho não-planejado (bugs, dívida, ideias, achados de auditoria). O `/dev-next` consome dela quando o `ROADMAP.md` acaba ou empaca — com um seletor determinístico que **para no gate** se faltar chave.
+
 ### Ciclo — a disciplina de engenharia de uma feature (herdado do v2)
 
 | Skill | Quando | O que entrega |
