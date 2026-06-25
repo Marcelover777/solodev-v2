@@ -81,7 +81,7 @@ Um teste que finge ser um usuário de verdade e passa pelo app inteiro, do cliqu
 
 **Repositório (repo)**
 A pasta do seu projeto com superpoderes: além dos arquivos, ela guarda o histórico inteiro de todas as mudanças. "Repo" é o apelido curto.
-*Exemplo:* `github.com/Marcelover777/crucible` é o repositório deste projeto.
+*Exemplo:* `github.com/Marcelover777/forger` é o repositório deste projeto.
 
 **Commit**
 Uma foto salva do seu projeto num momento, com um bilhetinho dizendo o que mudou. É o ponto pra onde você pode voltar se algo der errado depois.
@@ -189,4 +189,4 @@ O trio de uma feature, dentro de `.plans/<nome-da-feature>/`. O `BRIEF.md` guard
 
 ---
 
-<sub>Sentiu falta de algum termo? Abra uma issue no <a href="https://github.com/Marcelover777/crucible">repositório</a>. Glossário é porta de entrada — quanto menos jargão sobrar, melhor.</sub>
+<sub>Sentiu falta de algum termo? Abra uma issue no <a href="https://github.com/Marcelover777/forger">repositório</a>. Glossário é porta de entrada — quanto menos jargão sobrar, melhor.</sub>

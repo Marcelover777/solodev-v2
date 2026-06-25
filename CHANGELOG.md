@@ -104,7 +104,7 @@ Primeira release pública do Crucible — o ciclo de engenharia completo para o 
 
 O Crucible estende o **[solodev de calneymgp](https://github.com/calneymgp/solodev)**, a baseline (v1) de 3 skills. Licença MIT, com os créditos ao trabalho original preservados em `LICENSE` e no `README`.
 
-[3.1.0]: https://github.com/Marcelover777/crucible/releases/tag/v3.1.0
-[3.0.0]: https://github.com/Marcelover777/crucible/releases/tag/v3.0.0
-[2.1.0]: https://github.com/Marcelover777/crucible/releases/tag/v2.1.0
-[2.0.0]: https://github.com/Marcelover777/crucible/releases/tag/v2.0.0
+[3.1.0]: https://github.com/Marcelover777/forger/releases/tag/v3.1.0
+[3.0.0]: https://github.com/Marcelover777/forger/releases/tag/v3.0.0
+[2.1.0]: https://github.com/Marcelover777/forger/releases/tag/v2.1.0
+[2.0.0]: https://github.com/Marcelover777/forger/releases/tag/v2.0.0

@@ -11,7 +11,7 @@ Escolha **um** dos três métodos abaixo.
 Instala como plugin via marketplace — atualiza junto com o repo.
 
 ```
-/plugin marketplace add Marcelover777/crucible
+/plugin marketplace add Marcelover777/forger
 /plugin install forger@forger
 ```
 
@@ -30,19 +30,19 @@ Copia as dezessete skills direto para o `.claude/skills/` do projeto.
 **macOS / Linux:**
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Marcelover777/crucible/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/Marcelover777/forger/main/install.sh | bash
 ```
 
 **Windows (PowerShell):**
 
 ```powershell
-irm https://raw.githubusercontent.com/Marcelover777/crucible/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/Marcelover777/forger/main/install.ps1 | iex
 ```
 
 Por padrão instala no **diretório atual**. Para apontar outro projeto, clone o repo e rode o script passando o destino:
 
 ```bash
-git clone https://github.com/Marcelover777/crucible.git
+git clone https://github.com/Marcelover777/forger.git
 cd forger
 ./install.sh /caminho/do/seu/projeto        # macOS / Linux
 ```

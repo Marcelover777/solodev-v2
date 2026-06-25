@@ -5,14 +5,14 @@
 #
 # Uso:
 #   ./install.sh [TARGET_DIR]     # instala no diretório dado (default: diretório atual)
-#   curl -fsSL https://raw.githubusercontent.com/Marcelover777/crucible/main/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/Marcelover777/forger/main/install.sh | bash
 #
 # No modo pipe (curl|bash) não existem arquivos locais, então clonamos o repo
 # público num diretório temporário e copiamos de lá.
 #
 set -euo pipefail
 
-REPO_URL="https://github.com/Marcelover777/crucible.git"
+REPO_URL="https://github.com/Marcelover777/forger.git"
 SKILLS=(dev-start dev-audit dev-stack dev-design dev-setup dev-roadmap dev-next dev-loop dev-status dev-ops dev-context dev-brainstorm dev-plan dev-coding dev-fix dev-ship dev-help)
 
 # Diretório alvo (1º argumento) — onde fica o .claude/ do projeto.

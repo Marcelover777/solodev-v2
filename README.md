@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/Marcelover777/crucible">
+  <a href="https://github.com/Marcelover777/forger">
     <img src="assets/banner.gif" alt="Forger — da ideia ao deploy, um verbo só: executa o passo 0X" width="100%">
   </a>
 </p>
@@ -8,7 +8,7 @@
 
 > **Plan > Vibes.** Dezessete skills de Claude Code que levam o dev solo da ideia ao deploy — e auditam/melhoram projetos que já existem — aprendendo um comando só: *executa o passo 0X*.
 
-[![validate](https://github.com/Marcelover777/crucible/actions/workflows/validate.yml/badge.svg)](https://github.com/Marcelover777/crucible/actions/workflows/validate.yml)
+[![validate](https://github.com/Marcelover777/forger/actions/workflows/validate.yml/badge.svg)](https://github.com/Marcelover777/forger/actions/workflows/validate.yml)
 
 <sub>English version: [README.en.md](README.en.md)</sub>
 
@@ -167,7 +167,7 @@ Três formas. Detalhe completo em [INSTALL.md](INSTALL.md).
 **1. Plugin do Claude Code (recomendado)** — instala via marketplace, sem clonar nada:
 
 ```
-/plugin marketplace add Marcelover777/crucible
+/plugin marketplace add Marcelover777/forger
 /plugin install forger@forger
 ```
 
@@ -177,12 +177,12 @@ Três formas. Detalhe completo em [INSTALL.md](INSTALL.md).
 
 ```bash
 # macOS / Linux
-curl -fsSL https://raw.githubusercontent.com/Marcelover777/crucible/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/Marcelover777/forger/main/install.sh | bash
 ```
 
 ```powershell
 # Windows (PowerShell)
-irm https://raw.githubusercontent.com/Marcelover777/crucible/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/Marcelover777/forger/main/install.ps1 | iex
 ```
 
 **3. Manual** — copie a pasta `skills/` para onde o Claude Code lê suas skills (`.claude/skills/` por projeto ou `~/.claude/skills/` global). Passos por sistema em [INSTALL.md](INSTALL.md).

@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/Marcelover777/crucible">
+  <a href="https://github.com/Marcelover777/forger">
     <img src="assets/banner.gif" alt="Forger — da ideia ao deploy, um verbo só: executa o passo 0X" width="100%">
   </a>
 </p>
@@ -146,7 +146,7 @@ Three ways. Full detail in [INSTALL.md](INSTALL.md).
 **1. Claude Code plugin (recommended)** — install via the marketplace, nothing to clone. Skills land namespaced as `/forger:dev-*`:
 
 ```
-/plugin marketplace add Marcelover777/crucible
+/plugin marketplace add Marcelover777/forger
 /plugin install forger@forger
 ```
 
@@ -154,13 +154,13 @@ Three ways. Full detail in [INSTALL.md](INSTALL.md).
 
 ```bash
 # macOS / Linux
-git clone https://github.com/Marcelover777/crucible && cd forger
+git clone https://github.com/Marcelover777/forger && cd forger
 ./install.sh
 ```
 
 ```powershell
 # Windows (PowerShell)
-git clone https://github.com/Marcelover777/crucible; cd forger
+git clone https://github.com/Marcelover777/forger; cd forger
 .\install.ps1
 ```
 

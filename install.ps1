@@ -5,7 +5,7 @@
 #
 # Uso:
 #   .\install.ps1 [-TargetDir <caminho>]   # default: diretorio atual
-#   irm https://raw.githubusercontent.com/Marcelover777/crucible/main/install.ps1 | iex
+#   irm https://raw.githubusercontent.com/Marcelover777/forger/main/install.ps1 | iex
 #
 # No modo pipe (irm|iex) nao existem arquivos locais, entao clonamos o repo
 # publico num diretorio temporario e copiamos de la.
@@ -16,7 +16,7 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
-$RepoUrl = 'https://github.com/Marcelover777/crucible.git'
+$RepoUrl = 'https://github.com/Marcelover777/forger.git'
 $Skills  = @('dev-start', 'dev-audit', 'dev-stack', 'dev-design', 'dev-setup', 'dev-roadmap', 'dev-next', 'dev-loop', 'dev-status', 'dev-ops', 'dev-context', 'dev-brainstorm', 'dev-plan', 'dev-coding', 'dev-fix', 'dev-ship', 'dev-help')
 
 # --- Descobrir a fonte das skills ------------------------------------------
