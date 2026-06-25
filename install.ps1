@@ -1,7 +1,7 @@
 #requires -version 5
 #
-# Crucible - instalador Windows PowerShell
-# Copia as skills do Crucible para o .claude\skills\ de um projeto alvo.
+# Forger - instalador Windows PowerShell
+# Copia as skills do Forger para o .claude\skills\ de um projeto alvo.
 #
 # Uso:
 #   .\install.ps1 [-TargetDir <caminho>]   # default: diretorio atual
@@ -37,10 +37,10 @@ else {
         Write-Error 'git nao encontrado. Instale o git ou clone o repo manualmente.'
         exit 1
     }
-    $tmp = Join-Path ([System.IO.Path]::GetTempPath()) ("crucible-" + [System.Guid]::NewGuid().ToString('N'))
+    $tmp = Join-Path ([System.IO.Path]::GetTempPath()) ("forger-" + [System.Guid]::NewGuid().ToString('N'))
     New-Item -ItemType Directory -Force -Path $tmp | Out-Null
     $CleanupTmp = $tmp
-    Write-Host "==> Baixando Crucible de $RepoUrl ..."
+    Write-Host "==> Baixando Forger de $RepoUrl ..."
     git clone --depth 1 $RepoUrl $tmp 2>&1 | Out-Null
     if ($LASTEXITCODE -ne 0) {
         Write-Error "git clone falhou (codigo $LASTEXITCODE). Verifique sua conexao ou clone o repo manualmente."
@@ -61,7 +61,7 @@ try {
     $dest = Join-Path (Join-Path $TargetDir '.claude') 'skills'
     New-Item -ItemType Directory -Force -Path $dest | Out-Null
 
-    Write-Host "==> Instalando Crucible em: $dest"
+    Write-Host "==> Instalando Forger em: $dest"
     foreach ($skill in $Skills) {
         $src = Join-Path $srcSkills $skill
         if (Test-Path $src) {
@@ -76,7 +76,7 @@ try {
     }
 
     Write-Host ''
-    Write-Host "Pronto. As skills do Crucible estao em $dest"
+    Write-Host "Pronto. As skills do Forger estao em $dest"
     Write-Host 'Abra este projeto no Claude Code. Comece por /dev-start (modo guiado) - ou /dev-help para o mapa dos 15 comandos.'
 }
 finally {

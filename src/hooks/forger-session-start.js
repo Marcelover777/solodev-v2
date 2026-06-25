@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// Crucible — Claude Code SessionStart hook (continuidade entre sessões).
+// Forger — Claude Code SessionStart hook (continuidade entre sessões).
 //
-// O que faz: se existir `.crucible/PROGRESS.md` na raiz do projeto (cwd da
+// O que faz: se existir `.forge/PROGRESS.md` (ou o legado `.crucible/`) na raiz do projeto (cwd da
 // sessão), imprime o conteúdo como contexto de sessão. É a reimplementação
 // file-based da ideia "capturar → injetar memória" do claude-mem (Phase 0.1 do
 // PLAN): UM hook que faz `cat` de um arquivo Markdown — sem worker, sem DB, sem
@@ -89,16 +89,18 @@ function main() {
   }
 
   const projectDir = resolveProjectDir(data);
-  const progressPath = path.join(projectDir, '.crucible', 'PROGRESS.md');
-
-  const journal = readProgress(progressPath);
+  // Diretório de estado: `.forge/` (Forger) com fallback para `.crucible/` (legado).
+  let journal = readProgress(path.join(projectDir, '.forge', 'PROGRESS.md'));
+  if (!journal.trim()) {
+    journal = readProgress(path.join(projectDir, '.crucible', 'PROGRESS.md'));
+  }
   if (!journal.trim()) {
     // Sem journal → não injeta nada. Saída vazia, exit 0.
     process.exit(0);
   }
 
   const header =
-    'CONTINUIDADE Crucible — memória do projeto (.crucible/PROGRESS.md).\n' +
+    'CONTINUIDADE Forger — memória do projeto (.forge/PROGRESS.md).\n' +
     'É o journal append-only do que já foi feito. Use para retomar SEM pedir ao ' +
     'usuário reexplicar. O próximo passo costuma estar no último bloco.\n' +
     '────────────────────────────────────────\n\n';

@@ -1,15 +1,15 @@
-# Glossário do Crucible — vibe coding sem jargão
+# Glossário do Forger — vibe coding sem jargão
 
 > Travou numa palavra? Está no lugar certo. Aqui cada termo que costuma assustar quem está começando vem explicado em uma ou duas frases, em português de gente, com um exemplo curto. Sem definição que usa a própria palavra pra se explicar.
 
-Se você nunca programou, não precisa decorar nada disto. Comece por `/dev-start`, fale sua ideia, e volte aqui só quando aparecer um termo que você não reconhece. O Crucible faz o trabalho pesado — este glossário é só pra você não se sentir perdido enquanto ele trabalha.
+Se você nunca programou, não precisa decorar nada disto. Comece por `/dev-start`, fale sua ideia, e volte aqui só quando aparecer um termo que você não reconhece. O Forger faz o trabalho pesado — este glossário é só pra você não se sentir perdido enquanto ele trabalha.
 
 Índice:
 
 - [Código](#código)
 - [Git & GitHub](#git--github)
 - [Infra & deploy](#infra--deploy)
-- [Crucible (os termos do seu projeto)](#Crucible-os-termos-do-seu-projeto)
+- [Forger (os termos do seu projeto)](#Forger-os-termos-do-seu-projeto)
 
 ---
 
@@ -145,20 +145,20 @@ Gerar a estrutura inicial de um projeto ou de uma parte dele automaticamente —
 
 ---
 
-## Crucible (os termos do seu projeto)
+## Forger (os termos do seu projeto)
 
-Estes são os termos que o **Crucible** usa. Você vai vê-los o tempo todo enquanto trabalha — então vale conhecer.
+Estes são os termos que o **Forger** usa. Você vai vê-los o tempo todo enquanto trabalha — então vale conhecer.
 
 **"executa o passo 0X"**
-O único comando que o iniciante precisa decorar. Depois que o `ROADMAP.md` existe, você só pede "executa o passo 01" e o Crucible faz aquele passo inteiro pra você, sozinho. Quando termina, ele te diz qual é o próximo.
-*Exemplo:* você digita `executa o passo 03` e o Crucible implementa o passo 3, marca como feito e avisa "próximo: executa o passo 04".
+O único comando que o iniciante precisa decorar. Depois que o `ROADMAP.md` existe, você só pede "executa o passo 01" e o Forger faz aquele passo inteiro pra você, sozinho. Quando termina, ele te diz qual é o próximo.
+*Exemplo:* você digita `executa o passo 03` e o Forger implementa o passo 3, marca como feito e avisa "próximo: executa o passo 04".
 
 **ROADMAP.md**
 A lista numerada de passos do seu projeto, do começo ao fim, em um arquivo que você consegue ler. Cada passo é uma fatia que dá pra ver funcionando, não uma micro-tarefa. É o seu mapa: você executa um passo de cada vez.
 *Exemplo:* o `/dev-roadmap` cria o `ROADMAP.md` com `## 01 — Tela de login`, `## 02 — Cadastro`, e por aí vai.
 
 **Gate (trava de pré-requisito)**
-Uma trava esperta antes de um passo: se aquele passo precisa de uma chave ou configuração que ainda não existe, o Crucible **para** e te dá o link exato pra resolver, em vez de seguir quebrado. É o que evita você travar sem saber por quê.
+Uma trava esperta antes de um passo: se aquele passo precisa de uma chave ou configuração que ainda não existe, o Forger **para** e te dá o link exato pra resolver, em vez de seguir quebrado. É o que evita você travar sem saber por quê.
 *Exemplo:* o passo de pagamentos precisa da chave do Stripe; faltando, o gate avisa "falta a `STRIPE_SECRET_KEY` — pegue aqui: [link]" e só destrava quando você resolve.
 
 **CONTEXT.md**
@@ -179,8 +179,8 @@ O registro da identidade visual do projeto: cores, fontes, componentes instalado
 **GITHUB.md**
 Um guia curtinho que explica, em um parágrafo cada, o que são Actions, PR, CI, issue e branch — pra você entender o que o git está fazendo sem precisar estudar git. Escrito pelo `/dev-ops`, que cuida do git no automático pra você.
 
-**.crucible/ (PROGRESS.md e STATUS.md)**
-A pasta onde o Crucible guarda a memória e o estado do seu projeto entre as sessões. O `PROGRESS.md` é o diário do que já rolou; o `STATUS.md` é o painel de "o que está pronto, o que tem erro e o que falta". Você não precisa editar — o Crucible escreve e atualiza sozinho.
+**.forge/ (PROGRESS.md e STATUS.md)**
+A pasta onde o Forger guarda a memória e o estado do seu projeto entre as sessões. O `PROGRESS.md` é o diário do que já rolou; o `STATUS.md` é o painel de "o que está pronto, o que tem erro e o que falta". Você não precisa editar — o Forger escreve e atualiza sozinho.
 *Exemplo:* a qualquer hora você pede `/dev-status` e ele te mostra o painel; o `PROGRESS.md` faz o projeto lembrar de si mesmo amanhã sem você reexplicar nada.
 
 **BRIEF.md / PLAN.md / SUMMARY.md**

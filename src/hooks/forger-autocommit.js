@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Crucible — Claude Code Stop hook (auto-commit OPT-IN).
+// Forger — Claude Code Stop hook (auto-commit OPT-IN).
 //
 // O que faz: ao FIM de um turno, se houver mudanças no working tree, faz
 //   git add -A  &&  git commit -m "<Conventional Commits>"
@@ -7,14 +7,15 @@
 // de propósito — ver README.md desta pasta.
 //
 // Salvaguardas (DURAS — commit silencioso é perigoso, então tudo é conservador):
-//   - OPT-IN: só roda se CRUCIBLE_AUTOCOMMIT estiver em {1,true,yes,on}. Sem isso,
+//   - OPT-IN: só roda se FORGER_AUTOCOMMIT estiver em {1,true,yes,on}. Sem isso,
 //     no-op imediato. Instalar o hook NÃO o ativa; a env var ativa.
+//     (Legado: CRUCIBLE_AUTOCOMMIT ainda é aceito — o nome antigo do plugin.)
 //   - NUNCA push. Em hipótese nenhuma. Commit é local, reversível (`git reset`).
 //   - NUNCA na branch default (main/master) sem confirmação explícita via
-//     CRUCIBLE_AUTOCOMMIT_ALLOW_MAIN=1. Solo dev raramente quer auto-commit
-//     direto na main.
+//     FORGER_AUTOCOMMIT_ALLOW_MAIN=1 (legado: CRUCIBLE_AUTOCOMMIT_ALLOW_MAIN=1).
+//     Solo dev raramente quer auto-commit direto na main.
 //   - NUNCA --no-verify por padrão: os git hooks do projeto (pre-commit, etc.)
-//     RODAM. Só pula com CRUCIBLE_AUTOCOMMIT_NO_VERIFY=1, e isso é desencorajado.
+//     RODAM. Só pula com FORGER_AUTOCOMMIT_NO_VERIFY=1 (legado: CRUCIBLE_…), desencorajado.
 //   - Evita loop: respeita stop_hook_active do payload — se um Stop já está em
 //     processamento, sai na hora.
 //   - silent-fail / non-blocking: qualquer erro de git/FS → exit 0 sem bloquear
@@ -34,6 +35,10 @@ const TRUTHY = new Set(['1', 'true', 'yes', 'on']);
 function envOn(name) {
   const v = process.env[name];
   return !!v && TRUTHY.has(String(v).trim().toLowerCase());
+}
+// Aceita o nome novo (FORGER_*) e o legado (CRUCIBLE_*) — compat do rename.
+function envOnAny(...names) {
+  return names.some(envOn);
 }
 
 function readStdin() {
@@ -118,7 +123,7 @@ function commitMessage(cwd) {
 
 function main() {
   // 1. Opt-in. Sem a env var, o hook não faz nada (instalar ≠ ativar).
-  if (!envOn('CRUCIBLE_AUTOCOMMIT')) process.exit(0);
+  if (!envOnAny('FORGER_AUTOCOMMIT', 'CRUCIBLE_AUTOCOMMIT')) process.exit(0);
 
   // 2. Parse do payload + guarda anti-loop.
   let data = {};
@@ -141,7 +146,7 @@ function main() {
   // 4. Recusa branch default sem override explícito.
   const branch = currentBranch(cwd);
   const isDefaultBranch = branch === 'main' || branch === 'master';
-  if (isDefaultBranch && !envOn('CRUCIBLE_AUTOCOMMIT_ALLOW_MAIN')) process.exit(0);
+  if (isDefaultBranch && !envOnAny('FORGER_AUTOCOMMIT_ALLOW_MAIN', 'CRUCIBLE_AUTOCOMMIT_ALLOW_MAIN')) process.exit(0);
 
   // Branch detached (rebase/merge/bisect em curso) → não mexe.
   if (!branch || branch === 'HEAD') process.exit(0);
@@ -154,7 +159,7 @@ function main() {
 
   // 7. Commit. --no-verify só com opt-in adicional explícito (desencorajado).
   const args = ['commit', '-m', commitMessage(cwd)];
-  if (envOn('CRUCIBLE_AUTOCOMMIT_NO_VERIFY')) args.push('--no-verify');
+  if (envOnAny('FORGER_AUTOCOMMIT_NO_VERIFY', 'CRUCIBLE_AUTOCOMMIT_NO_VERIFY')) args.push('--no-verify');
   gitOk(cwd, args); // sucesso ou falha (ex.: pre-commit barrou) → segue.
 
   // NUNCA push. Fim. Exit 0 sempre.

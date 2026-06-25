@@ -1,6 +1,6 @@
 # PROGRESS.md Template (journal append-only)
 
-Salvar em `.crucible/PROGRESS.md` na raiz do projeto do usuário. É o **journal**: a memória entre sessões, escrita pelo `/dev-next` (e pelo `/dev-loop`) a cada passo/item que fecha verde. **Append-only** — nunca reescreva blocos antigos; o histórico é a verdade que uma sessão nova herda sem você reexplicar nada.
+Salvar em `.forge/PROGRESS.md` na raiz do projeto do usuário. É o **journal**: a memória entre sessões, escrita pelo `/dev-next` (e pelo `/dev-loop`) a cada passo/item que fecha verde. **Append-only** — nunca reescreva blocos antigos; o histórico é a verdade que uma sessão nova herda sem você reexplicar nada.
 
 Lido por `/dev-status jornada` (resumo narrativo) e por qualquer skill que precise saber "o que já andou".
 
@@ -22,7 +22,7 @@ Lido por `/dev-status jornada` (resumo narrativo) e por qualquer skill que preci
 - **O que mudou:** redirect URI mobile corrigido
 - **Arquivos:** src/auth/google.ts
 - **Verificação:** npm test auth verde
-- **Origem:** .crucible/BACKLOG.md (item não-planejado)
+- **Origem:** .forge/BACKLOG.md (item não-planejado)
 - **Próximo:** /dev-next
 ```
 
@@ -43,5 +43,5 @@ Lido por `/dev-status jornada` (resumo narrativo) e por qualquer skill que preci
 - **Append-only.** Adicione embaixo. Nunca edite nem apague bloco anterior — é journal, não estado mutável.
 - **Só após verde.** Um bloco entra quando a verificação passou de verdade. Falha vira bloqueio anotado, não um "done".
 - **Datado e ordenado.** Mais recente no fim. O `/dev-status jornada` costura os blocos numa história.
-- **Rotação (quando crescer):** acima de ~12 blocos, mova os mais antigos para `.crucible/PROGRESS.archive.md` (append, por mês) — **ação explícita** (groom do `/dev-loop` ou a pedido), nunca efeito colateral silencioso de uma leitura.
+- **Rotação (quando crescer):** acima de ~12 blocos, mova os mais antigos para `.forge/PROGRESS.archive.md` (append, por mês) — **ação explícita** (groom do `/dev-loop` ou a pedido), nunca efeito colateral silencioso de uma leitura.
 - **Sem token-economics.** Não há DB; isto é narrativa de progresso, não contabilidade de custo.

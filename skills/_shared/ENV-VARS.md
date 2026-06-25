@@ -1,6 +1,6 @@
 # ENV-VARS — lista canônica de variáveis de ambiente
 
-> **Fonte única da verdade dos NOMES de env var** que o Crucible reconhece.
+> **Fonte única da verdade dos NOMES de env var** que o Forger reconhece.
 > Não é uma skill (a pasta `_shared/` é ignorada pelo validador). É um catálogo citado por
 > `/dev-next` (gate) e `/dev-setup` (geração do `.env.example`/`SETUP.md`).
 >

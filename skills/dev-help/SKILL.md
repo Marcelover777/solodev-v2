@@ -1,11 +1,11 @@
 ---
 name: dev-help
-description: Mapa de comandos do Crucible — mostra a camada de onboarding (do zero ao ROADMAP.md) e o ciclo de engenharia de uma feature, qual skill usar em cada momento, o que cada uma entrega e onde ficam os outputs. Regra de ouro nova: iniciante começa por /dev-start; depois é só "executa o passo 0X". Exibição one-shot (não é modo persistente). Use quando o usuário disser "/dev-help", "ajuda do Crucible", "qual skill eu uso agora", "que comando do Crucible serve pra isso", "me lembra o fluxo", "como funciona o Crucible", "quais são os comandos", "por onde começo", "me perdi", ou parecer perdido sobre o que fazer agora.
+description: Mapa de comandos do Forger — mostra a camada de onboarding (do zero ao ROADMAP.md) e o ciclo de engenharia de uma feature, qual skill usar em cada momento, o que cada uma entrega e onde ficam os outputs. Regra de ouro nova: iniciante começa por /dev-start; depois é só "executa o passo 0X". Exibição one-shot (não é modo persistente). Use quando o usuário disser "/dev-help", "ajuda do Forger", "qual skill eu uso agora", "que comando do Forger serve pra isso", "me lembra o fluxo", "como funciona o Forger", "quais são os comandos", "por onde começo", "me perdi", ou parecer perdido sobre o que fazer agora.
 ---
 
 # /dev-help — Qual comando usar agora
 
-Mapa de comandos do Crucible. Mostre o conteúdo abaixo, adaptando a recomendação ao que o usuário acabou de dizer. **One-shot:** exiba e saia — não entra em modo nenhum, não fica perguntando.
+Mapa de comandos do Forger. Mostre o conteúdo abaixo, adaptando a recomendação ao que o usuário acabou de dizer. **One-shot:** exiba e saia — não entra em modo nenhum, não fica perguntando.
 
 O v3 tem duas camadas:
 - **Onboarding** — do zero ao `ROADMAP.md` numerado. É por onde o iniciante entra.
@@ -47,7 +47,7 @@ Usuário avançado pula o `/dev-start` e chama as sub-skills direto.
 | Gerar a lista numerada de passos | `/dev-roadmap` | `ROADMAP.md` + `.plans/steps/0X-*.md` |
 | Executar o próximo passo (ou um nomeado) | `executa o passo 0X` / `/dev-next` | passo feito, marcado, registrado |
 | Git/GitHub no automático (CI, PR, templates) | `/dev-ops` | `.github/*` + `GITHUB.md` + hooks opt-in |
-| Ver o estado do projeto a qualquer hora | `/dev-status` | `.crucible/STATUS.md` (progresso + qualidade) |
+| Ver o estado do projeto a qualquer hora | `/dev-status` | `.forge/STATUS.md` (progresso + qualidade) |
 
 ## O ciclo de uma feature (herdado do v2)
 
@@ -82,13 +82,13 @@ Usuário avançado pula o `/dev-start` e chama as sub-skills direto.
 - **`ROADMAP.md` e `PLAN.md` são memória externa.** Pode dar `/clear` no meio: os arquivos carregam o resto.
 - **Pronto = demonstrado, não sentido.** `/dev-ship` só fecha o que roda verde + demo.
 - **Status não inventa número.** `/dev-status` deriva tudo de arquivo real (`ROADMAP.md`, `git`, must_pass). Sem fonte → `❓ sem dado`.
-- **Memória se preenche sozinha.** `.crucible/PROGRESS.md` cresce a cada passo do `/dev-next` — você não escreve journal na mão.
+- **Memória se preenche sozinha.** `.forge/PROGRESS.md` cresce a cada passo do `/dev-next` — você não escreve journal na mão.
 
 ## Onde ficam os arquivos
 
-Memória do projeto (escrita pelas skills, lida entre sessões — fica na pasta `.crucible/`):
-- `.crucible/PROGRESS.md` — journal append-only, blocos `## YYYY-MM-DD — …` (escrito pelo `/dev-next` a cada passo; fonte do `/dev-status jornada`).
-- `.crucible/STATUS.md` — painel de estado/qualidade (escrito pelo `/dev-status`, sobrescrito a cada run).
+Memória do projeto (escrita pelas skills, lida entre sessões — fica na pasta `.forge/`):
+- `.forge/PROGRESS.md` — journal append-only, blocos `## YYYY-MM-DD — …` (escrito pelo `/dev-next` a cada passo; fonte do `/dev-status jornada`).
+- `.forge/STATUS.md` — painel de estado/qualidade (escrito pelo `/dev-status`, sobrescrito a cada run).
 
 Raiz do projeto (artefatos versionáveis, renderizam no GitHub):
 - `ROADMAP.md` — a lista numerada de passos. Cada item `## 0X — título` linka um `.plans/steps/0X-<slug>.md`.

@@ -5,7 +5,7 @@ description: Porta de entrada do vibe coder iniciante — da ideia ao projeto es
 
 # /dev-start — Da ideia ao ROADMAP.md, um verbo só
 
-Esta skill é o **modo guiado** do Crucible: o caminho feliz para quem nunca programou. O usuário fala a ideia uma vez e sai daqui com **stack escolhido**, **projeto estético scaffoldado**, **chaves mapeadas** e um **`ROADMAP.md` numerado** — tendo aprendido **um** comando: *"executa o passo 01"*.
+Esta skill é o **modo guiado** do Forger: o caminho feliz para quem nunca programou. O usuário fala a ideia uma vez e sai daqui com **stack escolhido**, **projeto estético scaffoldado**, **chaves mapeadas** e um **`ROADMAP.md` numerado** — tendo aprendido **um** comando: *"executa o passo 01"*.
 
 Ela **não reimplementa** stack, design, setup ou roadmap. Ela **orquestra** as quatro skills que já fazem isso — `/dev-stack`, `/dev-design`, `/dev-setup`, `/dev-roadmap` — em sequência, **mostrando o que está montando** a cada etapa. Usuário avançado pula isso e chama as sub-skills direto.
 
@@ -92,7 +92,7 @@ Mostre os primeiros 3-4 passos no chat para o usuário ver o caminho à frente, 
 
 ### 6. Registre a partida e entregue o verbo único
 
-O projeto agora tem memória. Faça **append** de um bloco no journal `.crucible/PROGRESS.md` (crie a pasta `.crucible/` se faltar; é journal append-only, nunca reescreva):
+O projeto agora tem memória. Faça **append** de um bloco no journal `.forge/PROGRESS.md` (crie a pasta `.forge/` se faltar; é journal append-only, nunca reescreva):
 
 ```
 ## YYYY-MM-DD — projeto iniciado via /dev-start
@@ -118,7 +118,7 @@ Então **feche com o verbo único** — esta é a frase de saída obrigatória d
 | `DESIGN.md` | a aparência: cores, componentes, convenções |
 | `.env.example` / `SETUP.md` | as chaves que o app precisa e onde pegar cada uma |
 | `ROADMAP.md` | a lista numerada de passos — seu mapa |
-| `.crucible/PROGRESS.md` | o diário do projeto (preenche sozinho conforme você avança) |
+| `.forge/PROGRESS.md` | o diário do projeto (preenche sozinho conforme você avança) |
 
 ## Anti-padrões
 

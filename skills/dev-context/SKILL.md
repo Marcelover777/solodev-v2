@@ -1,6 +1,6 @@
 ---
 name: dev-context
-description: Gera a memória de projeto (CONTEXT.md) que serve de fonte de vocabulário para todo o ciclo Crucible — one-liner, mapa de arquitetura, glossário canônico, convenções, invariantes, comandos e boundaries externos. Explora o repo em silêncio (manifests, estrutura, CLAUDE.md/AGENTS.md, schema) e só pergunta o que o código não responde. Use quando o usuário disser "/dev-context", "gera o contexto do projeto", "monta o CONTEXT.md", "preciso de memória de projeto pra IA", "documenta a arquitetura", "bootstrap do projeto", ou ao começar a trabalhar num repo que ainda não tem memória estruturada.
+description: Gera a memória de projeto (CONTEXT.md) que serve de fonte de vocabulário para todo o ciclo Forger — one-liner, mapa de arquitetura, glossário canônico, convenções, invariantes, comandos e boundaries externos. Explora o repo em silêncio (manifests, estrutura, CLAUDE.md/AGENTS.md, schema) e só pergunta o que o código não responde. Use quando o usuário disser "/dev-context", "gera o contexto do projeto", "monta o CONTEXT.md", "preciso de memória de projeto pra IA", "documenta a arquitetura", "bootstrap do projeto", ou ao começar a trabalhar num repo que ainda não tem memória estruturada.
 ---
 
 # /dev-context — Memória de projeto, fonte de vocabulário

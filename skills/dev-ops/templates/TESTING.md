@@ -1,7 +1,7 @@
 # TESTING.md — quando cada teste roda (e por quê)
 
 Regra de ouro: **teste rápido roda sempre, teste lento roda raro.** Se tudo
-rodasse a cada "salvar", você esperaria minutos a cada tecla. Então o Crucible
+rodasse a cada "salvar", você esperaria minutos a cada tecla. Então o Forger
 escalona: o que é instantâneo roda o tempo todo, o que demora roda só nos
 momentos que importam.
 

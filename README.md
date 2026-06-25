@@ -1,10 +1,10 @@
 <p align="center">
   <a href="https://github.com/Marcelover777/crucible">
-    <img src="assets/banner.gif" alt="Crucible — da ideia ao deploy, um verbo só: executa o passo 0X" width="100%">
+    <img src="assets/banner.gif" alt="Forger — da ideia ao deploy, um verbo só: executa o passo 0X" width="100%">
   </a>
 </p>
 
-# Crucible
+# Forger
 
 > **Plan > Vibes.** Quinze skills de Claude Code que levam o dev solo da ideia ao deploy — aprendendo um comando só: *executa o passo 0X*.
 
@@ -16,7 +16,7 @@ Você fala a ideia do seu jeito — por voz, por fluxo de consciência, misturan
 
 ## O que mudou no v3
 
-O Crucible já cobria a **disciplina de engenharia** de UMA feature (brainstorm → plano → execução → ship). Era ótimo para quem já sabia o que estava fazendo.
+O Forger já cobria a **disciplina de engenharia** de UMA feature (brainstorm → plano → execução → ship). Era ótimo para quem já sabia o que estava fazendo.
 
 O v3 envelopa isso numa **camada de onboarding** para quem está começando. Você não precisa mais saber por onde começar: o `/dev-start` pega sua ideia bruta e, mostrando o que está montando a cada etapa, deixa pronto o **stack escolhido**, o **projeto estético**, o **mapa das chaves** e um **`ROADMAP.md` numerado**. Depois é só pedir o próximo passo. Quando faltar uma chave de API, o sistema **para e te dá o link exato** — nunca avança quebrado.
 
@@ -75,17 +75,17 @@ A camada de cima é onde o iniciante entra. A de baixo é a disciplina herdada d
 
 Nunca programou? Esse é o caminho feliz. Você só toma **uma decisão por vez** e nada acontece em silêncio.
 
-1. **`/dev-start`** — fala sua ideia uma vez ("quero um site que vende meus quadros", "um app de lista de tarefas"). O Crucible devolve em poucas linhas o que entendeu, confirma com você, e então monta tudo: escolhe a infra e explica o porquê, deixa a aparência pronta, mapeia as chaves, e escreve o **`ROADMAP.md`** — a lista numerada de passos do seu projeto. No fim, ele te diz a única frase que você precisa decorar:
+1. **`/dev-start`** — fala sua ideia uma vez ("quero um site que vende meus quadros", "um app de lista de tarefas"). O Forger devolve em poucas linhas o que entendeu, confirma com você, e então monta tudo: escolhe a infra e explica o porquê, deixa a aparência pronta, mapeia as chaves, e escreve o **`ROADMAP.md`** — a lista numerada de passos do seu projeto. No fim, ele te diz a única frase que você precisa decorar:
 
    > Agora é só pedir: **executa o passo 01**.
 
-2. **"executa o passo 01"** — o Crucible faz o passo, marca como concluído ✅ no roadmap, registra o que mudou, e te avisa o próximo: *"próximo: executa o passo 02"*. Você repete. Esse é o ritmo do projeto inteiro.
+2. **"executa o passo 01"** — o Forger faz o passo, marca como concluído ✅ no roadmap, registra o que mudou, e te avisa o próximo: *"próximo: executa o passo 02"*. Você repete. Esse é o ritmo do projeto inteiro.
 
-3. **Os gates te protegem.** Se um passo precisa de uma chave que você ainda não pegou (a chave do banco de dados, a do pagamento), o Crucible **não tenta adivinhar e não quebra**: ele para e te entrega o link exato de onde pegar a chave, em texto mastigado. Você resolve, pede o passo de novo, e segue.
+3. **Os gates te protegem.** Se um passo precisa de uma chave que você ainda não pegou (a chave do banco de dados, a do pagamento), o Forger **não tenta adivinhar e não quebra**: ele para e te entrega o link exato de onde pegar a chave, em texto mastigado. Você resolve, pede o passo de novo, e segue.
 
 4. **`/dev-status` quando quiser saber onde está.** A qualquer momento, esse comando mostra um painel honesto: quanto do projeto já andou, o que tem erro, a qualidade de cada parte e qual o próximo passo. Tudo lido de arquivos reais — nada de número inventado. Perdido sobre o que fazer? **`/dev-help`** mostra o mapa de comandos.
 
-É isso. Um verbo ("executa o passo 0X"), um painel (`/dev-status`) e gates que te seguram quando falta algo. Você não precisa entender git, deploy ou variável de ambiente para começar — o Crucible explica cada peça quando ela aparece.
+É isso. Um verbo ("executa o passo 0X"), um painel (`/dev-status`) e gates que te seguram quando falta algo. Você não precisa entender git, deploy ou variável de ambiente para começar — o Forger explica cada peça quando ela aparece.
 
 ## As 15 skills
 
@@ -101,7 +101,7 @@ Duas camadas, mais a referência. Iniciante começa por `/dev-start`; usuário a
 | `/dev-setup` | O projeto pede uma chave e eu não sei de onde tirar | Lê o `STACK.md` + varre o código e gera um `.env.example` anotado (o que é cada var, onde pegar, obrigatória ou não) e um `SETUP.md` (checklist com o link exato de cada chave). Garante o `.gitignore`. |
 | `/dev-roadmap` | Quero a lista de passos do projeto | Transforma ideia/`CONTEXT.md`/`BRIEF.md` na lista numerada: `ROADMAP.md` na raiz + um `.plans/steps/0X-*.md` por passo. Cada passo é uma fatia demoável, com objetivo, gates e dependências. |
 | `/dev-next` | "executa o passo 0X" | O motor de execução. Resolve o próximo passo (ou um nomeado), **roda os gates primeiro** (falta chave? para e dá o link), delega ao ciclo, marca `[x]` no roadmap, registra o progresso e imprime o próximo passo. |
-| `/dev-status` | Como está o projeto? O que falta? | Painel derivado de arquivo real: % de progresso, qualidade por parte (build/test/lint/security ✅/⚠️/❌), erros, blockers e o próximo passo. Escreve `.crucible/STATUS.md`. Modo `jornada` = resumo narrativo motivacional. |
+| `/dev-status` | Como está o projeto? O que falta? | Painel derivado de arquivo real: % de progresso, qualidade por parte (build/test/lint/security ✅/⚠️/❌), erros, blockers e o próximo passo. Escreve `.forge/STATUS.md`. Modo `jornada` = resumo narrativo motivacional. |
 | `/dev-ops` | Configura o GitHub / não quero entender git | Git/GitHub no automático: scaffolda `.github/*` (CI, dependabot, templates de PR/issue), escreve um `GITHUB.md` que explica tudo pra leigo, define o timing de testes no `TESTING.md` e oferece (opt-in) hooks de auto-commit e limpeza de worktree. |
 
 ### Ciclo — a disciplina de engenharia de uma feature (herdado do v2)
@@ -152,10 +152,10 @@ Três formas. Detalhe completo em [INSTALL.md](INSTALL.md).
 
 ```
 /plugin marketplace add Marcelover777/crucible
-/plugin install crucible@crucible
+/plugin install forger@forger
 ```
 
-> Pelo plugin, as skills aparecem **namespaced**: `/crucible:dev-start`, `/crucible:dev-next`, etc. Os comandos puros (`/dev-start`, …) valem para os métodos de script e manual abaixo.
+> Pelo plugin, as skills aparecem **namespaced**: `/forger:dev-start`, `/forger:dev-next`, etc. Os comandos puros (`/dev-start`, …) valem para os métodos de script e manual abaixo.
 
 **2. Script (macOS / Linux / Windows):**
 
@@ -174,7 +174,7 @@ irm https://raw.githubusercontent.com/Marcelover777/crucible/main/install.ps1 | 
 ## O que tem dentro
 
 - **15 skills** em duas camadas — onboarding (`dev-start`, `dev-stack`, `dev-design`, `dev-setup`, `dev-roadmap`, `dev-next`, `dev-status`, `dev-ops`) e ciclo (`dev-context`, `dev-brainstorm`, `dev-plan`, `dev-coding`, `dev-fix`, `dev-ship`), mais a referência `dev-help`.
-- **Memória file-based** — `.crucible/PROGRESS.md` (journal do que andou) e `.crucible/STATUS.md` (painel), sem worker, sem banco, sem porta: só Markdown que renderiza no GitHub.
+- **Memória file-based** — `.forge/PROGRESS.md` (journal do que andou) e `.forge/STATUS.md` (painel), sem worker, sem banco, sem porta: só Markdown que renderiza no GitHub.
 - **Artefatos por projeto** — `ROADMAP.md` + `.plans/steps/0X-*.md`, `STACK.md`, `DESIGN.md`, `SETUP.md` + `.env.example`, `GITHUB.md`, `CONTEXT.md`, e por feature `.plans/<feature>/{BRIEF,PLAN,SUMMARY}.md`.
 - **Plugin + installer cross-platform** — `install.sh` e `install.ps1` para quem prefere script.
 - **Auto-validação em CI** — `scripts/validate.mjs` checa frontmatter das skills, manifests e docs a cada push. A suíte que prega critério verificável valida a si mesma.

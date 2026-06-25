@@ -1,13 +1,13 @@
-# Hooks do Crucible (opt-in, file-based)
+# Hooks do Forger (opt-in, file-based)
 
 Dois hooks de Claude Code. Ambos são **CommonJS**, **silent-fail** em qualquer
 erro de filesystem, respeitam `CLAUDE_CONFIG_DIR`, e **não** sobem worker, DB
-nem porta de rede. Tudo é leitura/append de arquivo — igual ao resto do Crucible.
+nem porta de rede. Tudo é leitura/append de arquivo — igual ao resto do Forger.
 
 | Hook | Evento | Liga sozinho? | O que faz |
 |------|--------|---------------|-----------|
-| `crucible-session-start.js` | `SessionStart` | inofensivo — só lê | Injeta `.crucible/PROGRESS.md` (se existir) como contexto, pra retomar a sessão sem reexplicar nada. |
-| `crucible-autocommit.js` | `Stop` | **NÃO** — precisa de env var | Ao fim do turno, faz `git add -A` + commit (Conventional Commits) se houver mudança. **Nunca push.** |
+| `forger-session-start.js` | `SessionStart` | inofensivo — só lê | Injeta `.forge/PROGRESS.md` (se existir) como contexto, pra retomar a sessão sem reexplicar nada. |
+| `forger-autocommit.js` | `Stop` | **NÃO** — precisa de env var | Ao fim do turno, faz `git add -A` + commit (Conventional Commits) se houver mudança. **Nunca push.** |
 
 > O **session-start** é seguro de ligar pra qualquer um: ele só lê um arquivo e
 > imprime. O **autocommit** mexe no seu git — leia o aviso de segurança abaixo
@@ -15,9 +15,9 @@ nem porta de rede. Tudo é leitura/append de arquivo — igual ao resto do Cruci
 
 ---
 
-## 1. `crucible-session-start.js` — continuidade entre sessões
+## 1. `forger-session-start.js` — continuidade entre sessões
 
-Quando uma sessão nova começa, o hook procura `.crucible/PROGRESS.md` na raiz do
+Quando uma sessão nova começa, o hook procura `.forge/PROGRESS.md` na raiz do
 seu projeto. Achou → imprime o conteúdo como contexto, e o Claude já sabe onde
 você parou (o `/dev-next` escreve esse journal a cada passo). Não achou → fica
 quieto, sem erro.
@@ -29,7 +29,7 @@ quieto, sem erro.
 
    ```bash
    mkdir -p "${CLAUDE_CONFIG_DIR:-$HOME/.claude}/hooks"
-   cp src/hooks/crucible-session-start.js "${CLAUDE_CONFIG_DIR:-$HOME/.claude}/hooks/"
+   cp src/hooks/forger-session-start.js "${CLAUDE_CONFIG_DIR:-$HOME/.claude}/hooks/"
    ```
 
 2. Registre o hook no `settings.json` (mesma pasta). Adicione dentro de `"hooks"`:
@@ -42,7 +42,7 @@ quieto, sem erro.
            "hooks": [
              {
                "type": "command",
-               "command": "node \"$CLAUDE_CONFIG_DIR/hooks/crucible-session-start.js\""
+               "command": "node \"$CLAUDE_CONFIG_DIR/hooks/forger-session-start.js\""
              }
            ]
          }
@@ -52,15 +52,15 @@ quieto, sem erro.
    ```
 
    No Windows, troque o comando por:
-   `node "%CLAUDE_CONFIG_DIR%\\hooks\\crucible-session-start.js"` (ou o caminho
+   `node "%CLAUDE_CONFIG_DIR%\\hooks\\forger-session-start.js"` (ou o caminho
    absoluto da sua pasta `.claude\\hooks`).
 
-3. Abra uma sessão nova num projeto que tenha `.crucible/PROGRESS.md`. O resumo do
+3. Abra uma sessão nova num projeto que tenha `.forge/PROGRESS.md`. O resumo do
    journal aparece como contexto inicial.
 
 ---
 
-## 2. `crucible-autocommit.js` — auto-commit (OPT-IN, perigoso se mal usado)
+## 2. `forger-autocommit.js` — auto-commit (OPT-IN, perigoso se mal usado)
 
 Mexe no seu repositório git. Por isso, **instalar não ativa** — ele só roda
 quando você liga uma variável de ambiente de propósito.
@@ -70,7 +70,7 @@ quando você liga uma variável de ambiente de propósito.
 - **Nunca faz `push`.** O commit é local. Errou? `git reset --soft HEAD~1`
   desfaz e devolve as mudanças ao working tree.
 - **Não commita na `main`/`master`** sem você liberar explicitamente
-  (`CRUCIBLE_AUTOCOMMIT_ALLOW_MAIN=1`).
+  (`FORGER_AUTOCOMMIT_ALLOW_MAIN=1`).
 - **Não usa `--no-verify` por padrão:** seus git hooks (pre-commit, lint, etc.)
   continuam rodando e podem barrar o commit — do jeito certo.
 - **Não entra em loop** (respeita `stop_hook_active`) e **nunca bloqueia** o fim
@@ -90,7 +90,7 @@ squashar os `[auto]`). Se você cura cada commit à mão, **não use este hook.*
 1. Copie o arquivo:
 
    ```bash
-   cp src/hooks/crucible-autocommit.js "${CLAUDE_CONFIG_DIR:-$HOME/.claude}/hooks/"
+   cp src/hooks/forger-autocommit.js "${CLAUDE_CONFIG_DIR:-$HOME/.claude}/hooks/"
    ```
 
 2. Registre o hook `Stop` no `settings.json`:
@@ -103,7 +103,7 @@ squashar os `[auto]`). Se você cura cada commit à mão, **não use este hook.*
            "hooks": [
              {
                "type": "command",
-               "command": "node \"$CLAUDE_CONFIG_DIR/hooks/crucible-autocommit.js\""
+               "command": "node \"$CLAUDE_CONFIG_DIR/hooks/forger-autocommit.js\""
              }
            ]
          }
@@ -116,34 +116,40 @@ squashar os `[auto]`). Se você cura cada commit à mão, **não use este hook.*
    Code (só a presença do hook no settings não basta):
 
    ```bash
-   export CRUCIBLE_AUTOCOMMIT=1
+   export FORGER_AUTOCOMMIT=1
    ```
 
-   No Windows (PowerShell): `$env:CRUCIBLE_AUTOCOMMIT = '1'`.
+   No Windows (PowerShell): `$env:FORGER_AUTOCOMMIT = '1'`.
 
 ### Env vars
 
 | Variável | Efeito | Padrão |
 |----------|--------|--------|
-| `CRUCIBLE_AUTOCOMMIT` | **Liga** o hook. Sem ela, no-op. | desligado |
-| `CRUCIBLE_AUTOCOMMIT_ALLOW_MAIN` | Permite commitar na `main`/`master`. | desligado (recusa) |
-| `CRUCIBLE_AUTOCOMMIT_NO_VERIFY` | Passa `--no-verify` (pula git hooks). **Desencorajado.** | desligado |
+| `FORGER_AUTOCOMMIT` | **Liga** o hook. Sem ela, no-op. | desligado |
+| `FORGER_AUTOCOMMIT_ALLOW_MAIN` | Permite commitar na `main`/`master`. | desligado (recusa) |
+| `FORGER_AUTOCOMMIT_NO_VERIFY` | Passa `--no-verify` (pula git hooks). **Desencorajado.** | desligado |
 
 Valores aceitos como "ligado": `1`, `true`, `yes`, `on` (case-insensitive).
 
+> **Compat (rename Crucible → Forger).** Os nomes legados `CRUCIBLE_AUTOCOMMIT`,
+> `CRUCIBLE_AUTOCOMMIT_ALLOW_MAIN` e `CRUCIBLE_AUTOCOMMIT_NO_VERIFY` continuam
+> funcionando — o hook aceita as duas famílias. Do mesmo jeito, o session-start
+> lê `.forge/PROGRESS.md` e, se não achar, cai no legado `.crucible/PROGRESS.md`.
+> Prefira os nomes novos; os antigos podem sair numa versão futura.
+
 ### Desligar
 
-- Temporário: `unset CRUCIBLE_AUTOCOMMIT` (PowerShell:
-  `Remove-Item Env:CRUCIBLE_AUTOCOMMIT`).
+- Temporário: `unset FORGER_AUTOCOMMIT` (PowerShell:
+  `Remove-Item Env:FORGER_AUTOCOMMIT`).
 - Permanente: remova o bloco `Stop` do `settings.json` e apague
-  `crucible-autocommit.js` da pasta `hooks/`.
+  `forger-autocommit.js` da pasta `hooks/`.
 
 ---
 
 ## Por que file-based (e não um worker como o claude-mem)
 
-O Crucible guarda memória e estado em **Markdown** (`.crucible/PROGRESS.md`,
-`.crucible/STATUS.md`) — versíável, legível, renderiza no GitHub, e não tem
+O Forger guarda memória e estado em **Markdown** (`.forge/PROGRESS.md`,
+`.forge/STATUS.md`) — versíável, legível, renderiza no GitHub, e não tem
 "worker unreachable". Estes hooks seguem a mesma regra: **um** `SessionStart` que
 lê um arquivo, **um** `Stop` opt-in que faz um commit. Sem captura de toda tool
 call, sem banco, sem porta. Se um hook falhar, ele some em silêncio — nunca

@@ -1,4 +1,4 @@
-# Instalação — Crucible
+# Instalação — Forger
 
 > Requer [Claude Code](https://docs.anthropic.com/claude-code). As skills são arquivos Markdown que o Claude Code carrega de `.claude/skills/` (por projeto) ou `~/.claude/skills/` (global).
 
@@ -12,14 +12,14 @@ Instala como plugin via marketplace — atualiza junto com o repo.
 
 ```
 /plugin marketplace add Marcelover777/crucible
-/plugin install crucible@crucible
+/plugin install forger@forger
 ```
 
 Rode `/reload-plugins` para ativar sem reiniciar a sessão.
 
-Ou pelo menu interativo: rode `/plugin`, escolha **Marketplace → crucible** e instale.
+Ou pelo menu interativo: rode `/plugin`, escolha **Marketplace → forger** e instale.
 
-> **Importante:** skills instaladas por plugin são **namespaced** pelo nome do plugin. Pelo método A, os comandos aparecem como `/crucible:dev-start`, `/crucible:dev-roadmap`, etc. — e não como `/dev-start` puro. Os comandos puros (`/dev-start`, …) só valem para os métodos **B** e **C**, que jogam as skills direto em `.claude/skills/`.
+> **Importante:** skills instaladas por plugin são **namespaced** pelo nome do plugin. Pelo método A, os comandos aparecem como `/forger:dev-start`, `/forger:dev-roadmap`, etc. — e não como `/dev-start` puro. Os comandos puros (`/dev-start`, …) só valem para os métodos **B** e **C**, que jogam as skills direto em `.claude/skills/`.
 
 ---
 
@@ -43,7 +43,7 @@ Por padrão instala no **diretório atual**. Para apontar outro projeto, clone o
 
 ```bash
 git clone https://github.com/Marcelover777/crucible.git
-cd crucible
+cd forger
 ./install.sh /caminho/do/seu/projeto        # macOS / Linux
 ```
 
@@ -79,31 +79,31 @@ No Windows, copie `skills\*` para `.claude\skills\` (projeto) ou `%USERPROFILE%\
 
 Abra o projeto no Claude Code e digite `/`. As quinze skills devem aparecer. **O prefixo depende do método de instalação:**
 
-**Via plugin (método A)** — comandos com namespace `crucible:`:
+**Via plugin (método A)** — comandos com namespace `forger:`:
 
 Onboarding (do zero ao `ROADMAP.md`):
 
-- `/crucible:dev-start`
-- `/crucible:dev-stack`
-- `/crucible:dev-design`
-- `/crucible:dev-setup`
-- `/crucible:dev-roadmap`
-- `/crucible:dev-next`
-- `/crucible:dev-status`
-- `/crucible:dev-ops`
+- `/forger:dev-start`
+- `/forger:dev-stack`
+- `/forger:dev-design`
+- `/forger:dev-setup`
+- `/forger:dev-roadmap`
+- `/forger:dev-next`
+- `/forger:dev-status`
+- `/forger:dev-ops`
 
 Ciclo de uma feature (herdado do v2):
 
-- `/crucible:dev-context`
-- `/crucible:dev-brainstorm`
-- `/crucible:dev-plan`
-- `/crucible:dev-coding`
-- `/crucible:dev-fix`
-- `/crucible:dev-ship`
+- `/forger:dev-context`
+- `/forger:dev-brainstorm`
+- `/forger:dev-plan`
+- `/forger:dev-coding`
+- `/forger:dev-fix`
+- `/forger:dev-ship`
 
 Referência:
 
-- `/crucible:dev-help`
+- `/forger:dev-help`
 
 **Via script ou manual (métodos B e C)** — comandos puros:
 
@@ -139,7 +139,7 @@ Se não aparecerem: pelo método A, rode `/reload-plugins` (ou reabra a sessão)
 
 ## Atualizar
 
-- **Plugin (método A):** `/plugin marketplace update crucible` e reinstale se pedido.
+- **Plugin (método A):** `/plugin marketplace update forger` e reinstale se pedido.
 - **Script (método B):** rode o `curl ... | bash` / `irm ... | iex` de novo — ele sobrescreve as skills existentes.
 - **Manual (método C):** `git pull` no repo e copie `skills/*` novamente.
 
@@ -147,7 +147,7 @@ Se não aparecerem: pelo método A, rode `/reload-plugins` (ou reabra a sessão)
 
 ## Desinstalar
 
-- **Plugin (método A):** `/plugin uninstall crucible@crucible`.
+- **Plugin (método A):** `/plugin uninstall forger@forger`.
 - **Script / Manual (B e C):** remova as pastas das skills:
 
 ```bash

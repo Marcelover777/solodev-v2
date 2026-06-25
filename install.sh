@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
-# Crucible — instalador POSIX
-# Copia as skills do Crucible para o .claude/skills/ de um projeto alvo.
+# Forger — instalador POSIX
+# Copia as skills do Forger para o .claude/skills/ de um projeto alvo.
 #
 # Uso:
 #   ./install.sh [TARGET_DIR]     # instala no diretório dado (default: diretório atual)
@@ -40,7 +40,7 @@ else
   }
   TMP_DIR="$(mktemp -d)"
   CLEANUP_TMP="$TMP_DIR"
-  echo "==> Baixando Crucible de $REPO_URL ..."
+  echo "==> Baixando Forger de $REPO_URL ..."
   git clone --depth 1 "$REPO_URL" "$TMP_DIR" >/dev/null 2>&1
   SOURCE_DIR="$TMP_DIR"
 fi
@@ -63,7 +63,7 @@ fi
 DEST="$TARGET_DIR/.claude/skills"
 mkdir -p "$DEST"
 
-echo "==> Instalando Crucible em: $DEST"
+echo "==> Instalando Forger em: $DEST"
 for skill in "${SKILLS[@]}"; do
   src="$SOURCE_DIR/skills/$skill"
   if [ -d "$src" ]; then
@@ -76,5 +76,5 @@ for skill in "${SKILLS[@]}"; do
 done
 
 echo ""
-echo "Pronto. As skills do Crucible estão em $DEST"
+echo "Pronto. As skills do Forger estão em $DEST"
 echo "Abra este projeto no Claude Code. Comece por /dev-start (modo guiado) — ou /dev-help para o mapa dos 15 comandos."

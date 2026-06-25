@@ -1,6 +1,6 @@
 ---
 name: dev-status
-description: Painel de estado do projeto, derivado de arquivos reais — lê ROADMAP.md, .plans/*/PLAN.md, git status e o resultado dos must_pass e escreve .crucible/STATUS.md com % de progresso, qualidade por parte (build/test/lint/security ✅/⚠️/❌), onde estão os erros, blockers e o próximo passo. Modo jornada vira resumo narrativo motivacional do .crucible/PROGRESS.md. Use quando o usuário disser "/dev-status", "como está o projeto", "o que falta", "o que já está pronto", "tem erro?", "qual o próximo passo", "resumo do progresso", "modo jornada", "conta a história do projeto", ou parecer perdido sobre o estado atual.
+description: Painel de estado do projeto, derivado de arquivos reais — lê ROADMAP.md, .plans/*/PLAN.md, git status e o resultado dos must_pass e escreve .forge/STATUS.md com % de progresso, qualidade por parte (build/test/lint/security ✅/⚠️/❌), onde estão os erros, blockers e o próximo passo. Modo jornada vira resumo narrativo motivacional do .forge/PROGRESS.md. Use quando o usuário disser "/dev-status", "como está o projeto", "o que falta", "o que já está pronto", "tem erro?", "qual o próximo passo", "resumo do progresso", "modo jornada", "conta a história do projeto", ou parecer perdido sobre o estado atual.
 ---
 
 # /dev-status — O painel que não inventa número
@@ -8,14 +8,14 @@ description: Painel de estado do projeto, derivado de arquivos reais — lê ROA
 Foto do projeto AGORA: quanto andou, o que tem erro, qual a qualidade de cada parte, o que está travado, e o próximo passo. **Tudo derivado de arquivo real** — ROADMAP.md, PLAN.md, `git status`, saída dos `must_pass`. Nada de % chutado.
 
 Duas saídas:
-- **Painel** (default) → escreve `.crucible/STATUS.md` + mostra um resumo no chat.
-- **Jornada** (`/dev-status jornada`) → resumo narrativo motivacional do `.crucible/PROGRESS.md`. Sem painel, sem números de token.
+- **Painel** (default) → escreve `.forge/STATUS.md` + mostra um resumo no chat.
+- **Jornada** (`/dev-status jornada`) → resumo narrativo motivacional do `.forge/PROGRESS.md`. Sem painel, sem números de token.
 
 ## Princípios não-negociáveis
 
 1. **Status deriva de arquivo, nunca de palpite.** Se não há sinal real (ROADMAP, PLAN, git, must_pass), a célula é `❓ sem dado` — não `✅`, não um % inventado.
-2. **One-shot.** Lê → escreve `.crucible/STATUS.md` → mostra resumo → sai. Não entra em modo, não fica perguntando.
-3. **Read-only sobre o projeto.** A skill só LÊ código/git e ESCREVE `.crucible/STATUS.md`. Nunca edita código, nunca commita, nunca roda comando destrutivo.
+2. **One-shot.** Lê → escreve `.forge/STATUS.md` → mostra resumo → sai. Não entra em modo, não fica perguntando.
+3. **Read-only sobre o projeto.** A skill só LÊ código/git e ESCREVE `.forge/STATUS.md`. Nunca edita código, nunca commita, nunca roda comando destrutivo.
 4. **Karpathy.** Reporta o que existe. Não inventa risco, não enche de seção vazia, não duplica o que o ROADMAP já diz.
 
 ## Processo (modo painel)
@@ -73,13 +73,13 @@ Se não há blocker, escreva `Nenhum` — não invente risco especulativo.
 
 ### 6. Escreva o STATUS.md e mostre o resumo
 
-Use [STATUS-TEMPLATE.md](STATUS-TEMPLATE.md) como esqueleto. Salve em `.crucible/STATUS.md` (crie a pasta `.crucible/` se faltar). No chat, mostre só: % + fração, as 4 partes em 1 linha, o blocker mais urgente (ou "sem blocker"), e o próximo passo. O arquivo guarda o detalhe.
+Use [STATUS-TEMPLATE.md](STATUS-TEMPLATE.md) como esqueleto. Salve em `.forge/STATUS.md` (crie a pasta `.forge/` se faltar). No chat, mostre só: % + fração, as 4 partes em 1 linha, o blocker mais urgente (ou "sem blocker"), e o próximo passo. O arquivo guarda o detalhe.
 
 ## Processo (modo jornada)
 
 Acionado por `/dev-status jornada` (ou "conta a história do projeto", "resumo do progresso").
 
-1. **Read** `.crucible/PROGRESS.md` (journal append-only, blocos `## YYYY-MM-DD — ...`).
+1. **Read** `.forge/PROGRESS.md` (journal append-only, blocos `## YYYY-MM-DD — ...`).
 2. Costure os blocos em 4-8 frases: de onde o projeto partiu → marcos que venceu → onde está hoje → o próximo passo natural.
 3. Tom motivacional e honesto: celebra o que andou, nomeia o que travou, sem exagero.
 4. **Não** escreve arquivo. **Não** calcula token/custo (não há DB — isso é o que separa do claude-mem). É narrativa, não contabilidade.
@@ -98,8 +98,8 @@ Acionado por `/dev-status jornada` (ou "conta a história do projeto", "resumo d
 
 ## Onde ficam os arquivos
 
-- `.crucible/STATUS.md` — o painel que esta skill escreve (sobrescrito a cada run).
-- `.crucible/PROGRESS.md` — o journal (fonte do modo jornada; escrito por `/dev-next`, não por esta skill).
+- `.forge/STATUS.md` — o painel que esta skill escreve (sobrescrito a cada run).
+- `.forge/PROGRESS.md` — o journal (fonte do modo jornada; escrito por `/dev-next`, não por esta skill).
 - `ROADMAP.md` — raiz; fonte do progresso.
 - `.plans/<feature>/PLAN.md` — progresso fino por feature.
 
@@ -107,4 +107,4 @@ Acionado por `/dev-status jornada` (ou "conta a história do projeto", "resumo d
 
 Após escrever o painel, sugira o passo que encaixa no que ele revelou:
 
-> *"Painel salvo em `.crucible/STATUS.md`. Próximo: `executa o passo 0X` (passo desbloqueado). Se há `❌`, comece pelo `/dev-fix`. Se um gate travou, resolva o item do `SETUP.md` e rode de novo. Para a história do projeto: `/dev-status jornada`."*
+> *"Painel salvo em `.forge/STATUS.md`. Próximo: `executa o passo 0X` (passo desbloqueado). Se há `❌`, comece pelo `/dev-fix`. Se um gate travou, resolva o item do `SETUP.md` e rode de novo. Para a história do projeto: `/dev-status jornada`."*
