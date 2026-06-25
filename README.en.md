@@ -6,7 +6,7 @@
 
 # Forger
 
-> **Plan > Vibes.** Fifteen Claude Code skills that take the beginner from a loose idea to a deployed project — learning **one verb**: *"run step 0X."*
+> **Plan > Vibes.** Seventeen Claude Code skills that take the beginner from a loose idea to a deployed project — and audit & improve existing ones — learning **one verb**: *"run step 0X."*
 
 *Versão em português: [README.md](README.md).*
 
@@ -64,7 +64,7 @@ You only need to learn **one command**. The flow:
 
 No jargon, one decision at a time, nothing happens in silence. An advanced user skips `/dev-start` and calls the sub-skills directly.
 
-## The 15 skills
+## The 17 skills
 
 Two layers. **Onboarding** takes you from zero to a numbered roadmap; **cycle** is the v2 engineering discipline each step triggers. **Reference** is the in-session map.
 

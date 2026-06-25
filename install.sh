@@ -77,4 +77,4 @@ done
 
 echo ""
 echo "Pronto. As skills do Forger estão em $DEST"
-echo "Abra este projeto no Claude Code. Comece por /dev-start (modo guiado) — ou /dev-help para o mapa dos 15 comandos."
+echo "Abra este projeto no Claude Code. Projeto novo? /dev-start. Já existe? /dev-audit. Mapa completo: /dev-help (17 skills)."

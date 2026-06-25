@@ -1,7 +1,7 @@
 {
   "name": "forger",
-  "version": "3.1.0",
-  "description": "Quinze skills de Claude Code (PT-BR) que levam o dev solo da ideia ao deploy: onboarding guiado (start, stack, design, setup, roadmap, next, status, ops) + ciclo de engenharia (context, brainstorm, plan, coding, fix, ship) + help. Iniciante começa por /dev-start e depois é só 'executa o passo 0X'.",
+  "version": "4.0.0",
+  "description": "Dezessete skills de Claude Code (PT-BR) que levam o dev solo da ideia ao deploy E melhoram projetos que já existem: onboarding guiado (start, stack, design, setup, roadmap, next, status, ops), auditoria de projeto existente (audit) + fila .forge/BACKLOG.md, avanço-automático gated (loop) e o ciclo de engenharia (context, brainstorm, plan, coding, fix, ship) + help. Projeto novo? /dev-start. Já existe? /dev-audit. Depois é só 'executa o passo 0X'.",
   "author": {
     "name": "Marcelover777",
     "url": "https://github.com/Marcelover777"

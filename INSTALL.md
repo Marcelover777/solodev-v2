@@ -25,7 +25,7 @@ Ou pelo menu interativo: rode `/plugin`, escolha **Marketplace → forger** e in
 
 ## B. Script de instalação
 
-Copia as quinze skills direto para o `.claude/skills/` do projeto.
+Copia as dezessete skills direto para o `.claude/skills/` do projeto.
 
 **macOS / Linux:**
 
@@ -77,7 +77,7 @@ No Windows, copie `skills\*` para `.claude\skills\` (projeto) ou `%USERPROFILE%\
 
 ## Verificar
 
-Abra o projeto no Claude Code e digite `/`. As quinze skills devem aparecer. **O prefixo depende do método de instalação:**
+Abra o projeto no Claude Code e digite `/`. As dezessete skills devem aparecer. **O prefixo depende do método de instalação:**
 
 **Via plugin (método A)** — comandos com namespace `forger:`:
 

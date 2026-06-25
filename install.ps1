@@ -77,7 +77,7 @@ try {
 
     Write-Host ''
     Write-Host "Pronto. As skills do Forger estao em $dest"
-    Write-Host 'Abra este projeto no Claude Code. Comece por /dev-start (modo guiado) - ou /dev-help para o mapa dos 15 comandos.'
+    Write-Host 'Abra este projeto no Claude Code. Projeto novo? /dev-start. Ja existe? /dev-audit. Mapa completo: /dev-help (17 skills).'
 }
 finally {
     if ($CleanupTmp -and (Test-Path $CleanupTmp)) {

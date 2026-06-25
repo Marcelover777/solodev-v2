@@ -6,7 +6,7 @@
 
 # Forger
 
-> **Plan > Vibes.** Quinze skills de Claude Code que levam o dev solo da ideia ao deploy — aprendendo um comando só: *executa o passo 0X*.
+> **Plan > Vibes.** Dezessete skills de Claude Code que levam o dev solo da ideia ao deploy — e auditam/melhoram projetos que já existem — aprendendo um comando só: *executa o passo 0X*.
 
 [![validate](https://github.com/Marcelover777/crucible/actions/workflows/validate.yml/badge.svg)](https://github.com/Marcelover777/crucible/actions/workflows/validate.yml)
 
@@ -87,7 +87,7 @@ Nunca programou? Esse é o caminho feliz. Você só toma **uma decisão por vez*
 
 É isso. Um verbo ("executa o passo 0X"), um painel (`/dev-status`) e gates que te seguram quando falta algo. Você não precisa entender git, deploy ou variável de ambiente para começar — o Forger explica cada peça quando ela aparece.
 
-## As 15 skills
+## As 17 skills
 
 Duas camadas, mais a referência. Iniciante começa por `/dev-start`; usuário avançado chama as skills direto.
 
@@ -189,7 +189,7 @@ irm https://raw.githubusercontent.com/Marcelover777/crucible/main/install.ps1 | 
 
 ## O que tem dentro
 
-- **15 skills** em duas camadas — onboarding (`dev-start`, `dev-stack`, `dev-design`, `dev-setup`, `dev-roadmap`, `dev-next`, `dev-status`, `dev-ops`) e ciclo (`dev-context`, `dev-brainstorm`, `dev-plan`, `dev-coding`, `dev-fix`, `dev-ship`), mais a referência `dev-help`.
+- **17 skills** em duas portas + um runner — onboarding (`dev-start`, `dev-stack`, `dev-design`, `dev-setup`, `dev-roadmap`, `dev-next`, `dev-status`, `dev-ops`), **auditoria** (`dev-audit`) de projeto existente, **avanço-automático gated** (`dev-loop`) e o ciclo de engenharia (`dev-context`, `dev-brainstorm`, `dev-plan`, `dev-coding`, `dev-fix`, `dev-ship`), mais a referência `dev-help`.
 - **Memória file-based** — `.forge/PROGRESS.md` (journal do que andou) e `.forge/STATUS.md` (painel), sem worker, sem banco, sem porta: só Markdown que renderiza no GitHub.
 - **Artefatos por projeto** — `ROADMAP.md` + `.plans/steps/0X-*.md`, `STACK.md`, `DESIGN.md`, `SETUP.md` + `.env.example`, `GITHUB.md`, `CONTEXT.md`, e por feature `.plans/<feature>/{BRIEF,PLAN,SUMMARY}.md`.
 - **Plugin + installer cross-platform** — `install.sh` e `install.ps1` para quem prefere script.

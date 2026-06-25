@@ -5,6 +5,33 @@ Todas as mudanças relevantes deste projeto são documentadas aqui.
 O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e o projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 
+## [4.0.0] - 2026-06-25
+
+Renomeação **Crucible → Forger** e três capacidades novas: auditar projetos que já existem, uma fila durável de trabalho não-planejado, e um runner de avanço-automático *gated*. Quinze → **dezessete skills**.
+
+### Renamed (BREAKING)
+
+- **Crucible → Forger.** Plugin/marketplace `name` agora `forger` (namespace `/forger:dev-*`). Os nomes das skills (`/dev-*`) **não mudaram**.
+- **Pasta de estado `.crucible/` → `.forge/`.** As skills leem `.forge/` e caem no legado `.crucible/` como fallback; o session-start hook idem. O exemplo versionado migrou via `git mv`.
+- **Hooks `crucible-*.js` → `forger-*.js`**; env vars `FORGER_AUTOCOMMIT*` (os legados `CRUCIBLE_AUTOCOMMIT*` continuam aceitos).
+- **Repositório GitHub** `Marcelover777/crucible` → `Marcelover777/forger` (quebra URLs de install antigas — atualize seus links).
+
+### Added
+
+- **`/dev-audit` (skill nova)** — audita um projeto existente (read-only): pontua config, arquitetura, segurança, saúde de deps, testes, DX, performance e UI/UX (✅/⚠️/❌/⏭️, phase-aware, com evidência `arquivo:linha`), escreve `.forge/AUDIT-<data>.md` e **semeia o `.forge/BACKLOG.md`** com itens gated e verificáveis. Reusa `/dev-stack` e `/dev-status`.
+- **`.forge/BACKLOG.md` (fila file-based)** — trabalho não-planejado (bug/dívida/infra/chore/idea; `feat` proibido — vai pro ROADMAP). O `/dev-next` consome com um seletor determinístico (precedência ROADMAP→BACKLOG), parando no gate. Integridade enforced pelo `validate.mjs`.
+- **`/dev-loop` (skill nova) + `scripts/loop.ps1`/`loop.sh`** — runner de avanço-automático *gated*: avança ROADMAP/BACKLOG numa branch isolada, parando em toda frontier (GATE/CHECKPOINT/RED) e nos caps (iteração/custo/no-progress); verificação mecânica autoritativa. Níveis em `.forge/AUTONOMY.md`: `suggest`/`step`/`supervised`/`headless`. Lei: **AUTONOMIA = f(VERIFICAÇÃO)**.
+- **`skills/_shared/ENV-VARS.md`** — catálogo único de nomes de env var (era inline no `dev-next`).
+- **`skills/dev-next/PROGRESS-TEMPLATE.md`** — schema do journal append-only.
+
+### Changed
+
+- **`dev-next`** — especifica o parsing de `depends_on` (frontmatter, lista de IDs), re-checa o gate a cada invocação, e ganhou o seletor do BACKLOG.
+- **`dev-status`** — severidade por check (o que **bloqueia ship** vs só avisa) + split `test`/`test:e2e`.
+- **`dev-coding`** — anti-placeholder mecânico (grep de `TODO`/`FIXME`/stub no diff antes de marcar `[x]`).
+- **`dev-setup`** — tabela de prefixo público por framework no `.env.example`.
+- **`validate.mjs`** — ignora `skills/_*/`; valida a integridade dos `BACKLOG.md` de exemplo.
+
 ## [3.1.0] - 2026-06-16
 
 Rebrand do projeto e uma doutrina nova de ambição.

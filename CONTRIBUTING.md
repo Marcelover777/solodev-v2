@@ -4,7 +4,7 @@ Obrigado pelo interesse. O Forger é um pacote de **skills do Claude Code** — 
 
 ## As duas camadas
 
-O v3 tem **15 skills em duas camadas**. Entenda em qual você mexe antes de abrir PR:
+O Forger tem **17 skills (duas portas de entrada + um runner)**. Entenda em qual você mexe antes de abrir PR:
 
 - **Onboarding (zero-fricção, do leigo ao deploy):** `dev-start` (porta de entrada guiada), `dev-stack` (advisor de infra/conectores), `dev-design` (estética), `dev-setup` (chaves/`.env`), `dev-roadmap` (lista numerada de passos), `dev-next` (executa o passo 0X), `dev-status` (painel de estado), `dev-ops` (git/GitHub no automático).
 - **Ciclo de engenharia (uma feature por vez, herdado do v2):** `dev-context`, `dev-brainstorm`, `dev-plan`, `dev-coding`, `dev-fix`, `dev-ship`.

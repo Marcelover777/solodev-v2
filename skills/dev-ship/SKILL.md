@@ -44,6 +44,14 @@ Leia o diff completo da feature (`git diff <base>...HEAD` ou working tree) com o
 - Async sem await / promise solta / race óbvia
 - Off-by-one em paginação/slice/loop
 
+**Grep mecânico no diff** (rápido; não substitui a leitura):
+
+```
+git diff --name-only <base>...HEAD | xargs grep -nE "console\.log|debugger|\.only\(|TODO|FIXME|sk_live_|AKIA[0-9A-Z]{16}" 2>/dev/null
+```
+
+`.only(` = teste focado esquecido (a suíte não roda inteira) → remova. `sk_live_`/`AKIA…` = padrão de segredo → trate como segurança (§4). Resto de debug novo → fora antes do ship.
+
 ### 4. Lente de segurança (só arquivos tocados)
 
 Não é auditoria completa — é o mínimo que evita vergonha:
@@ -60,7 +68,7 @@ Escreva `.plans/<feature>/SUMMARY.md`:
 - O que foi entregue (1 parágrafo)
 - Commits envolvidos
 - Decisões tomadas durante execução que não estavam no plano (copie de `## Decisions`)
-- Follow-ups deferidos (o que apareceu e ficou de fora — candidatos a próximo `/dev-brainstorm`)
+- Follow-ups deferidos (o que apareceu e ficou de fora) — **ofereça semear no `.forge/BACKLOG.md`** (`Tipo: debt`/`idea`, `Origem: <feature>`, com `Aceite` verificável) para o `/dev-next`/`/dev-loop` pegarem depois. Não infle o escopo agora; enfileire.
 
 Atualize o frontmatter do PLAN.md: `status: done`.
 
