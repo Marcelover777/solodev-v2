@@ -33,10 +33,10 @@ if (skills.length === 0) fail("skills/: nenhuma skill encontrada");
 
 // --- 2. Cada skill: SKILL.md com frontmatter name/description --------------
 const parseFrontmatter = (txt) => {
-  const m = txt.match(/^---\n([\s\S]*?)\n---/);
+  const m = txt.match(/^\uFEFF?---\r?\n([\s\S]*?)\r?\n---/);
   if (!m) return null;
   const fm = {};
-  for (const line of m[1].split("\n")) {
+  for (const line of m[1].split(/\r?\n/)) {
     const kv = line.match(/^([a-zA-Z_]+):\s*(.*)$/);
     if (kv) fm[kv[1]] = kv[2].trim();
   }

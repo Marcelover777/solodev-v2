@@ -1,0 +1,11 @@
+# Finais de linha consistentes cross-platform.
+# Texto = LF no repo E no working tree (o validate.mjs e o GitHub esperam LF;
+# autocrlf do Windows quebrava o frontmatter das skills no checkout).
+* text=auto eol=lf
+
+# PowerShell: preservar exatamente (loop.ps1 tem BOM UTF-8 p/ o PS 5.1).
+*.ps1 -text
+
+# Binários — nunca normalizar.
+*.png binary
+*.gif binary
