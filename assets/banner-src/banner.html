@@ -1,0 +1,143 @@
+<!doctype html>
+<!--
+  Fonte do banner do Forger. Determinístico: window.setFrame(t), t∈[0,1), loop perfeito.
+  Render (via Chrome headless / puppeteer): screenshot @2x = PNG; 26 frames @1x → ffmpeg → GIF.
+  Ver assets/banner-src/README.md.
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<style>
+  :root { --glow-op: 1; --glow-x: 76%; --pulse: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1280px; height: 400px; overflow: hidden; }
+  .stage {
+    position: relative; width: 1280px; height: 400px;
+    background:
+      radial-gradient(120% 160% at var(--glow-x) 58%,
+        rgba(255,170,60,0.42) 0%,
+        rgba(255,90,20,0.30) 22%,
+        rgba(190,40,10,0.16) 40%,
+        rgba(10,10,12,0) 64%),
+      linear-gradient(95deg, #0a0a0c 0%, #0d0d10 46%, #14100e 70%, #1c1410 100%);
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    overflow: hidden;
+  }
+  /* núcleo incandescente da forja, à direita */
+  .core {
+    position: absolute; right: -120px; top: 50%; transform: translateY(-50%);
+    width: 520px; height: 520px; border-radius: 50%;
+    background: radial-gradient(circle at 42% 50%,
+      rgba(255,214,140,0.95) 0%, rgba(255,140,40,0.85) 18%,
+      rgba(255,70,18,0.55) 38%, rgba(120,24,6,0) 70%);
+    filter: blur(6px);
+    opacity: var(--glow-op);
+    mix-blend-mode: screen;
+  }
+  /* traços de circuito */
+  .circuit { position: absolute; inset: 0; opacity: 0.5; }
+  .embers { position: absolute; inset: 0; pointer-events: none; }
+  .ember { position: absolute; width: 4px; height: 4px; border-radius: 50%;
+    background: radial-gradient(circle, #ffd28a 0%, #ff7a18 60%, rgba(255,90,20,0) 100%);
+    will-change: transform, opacity; }
+
+  .content { position: absolute; left: 64px; top: 0; height: 400px;
+    display: flex; flex-direction: column; justify-content: center; gap: 14px; z-index: 5; }
+  .eyebrow { font-size: 14px; letter-spacing: 4.5px; font-weight: 700;
+    color: #ffae6b; text-transform: uppercase; }
+  .eyebrow .dot { color: #6b5a4a; margin: 0 7px; }
+  .title { font-size: 92px; font-weight: 800; line-height: 0.92; color: #fff;
+    letter-spacing: -2px; text-shadow: 0 2px 40px rgba(255,120,40,0.45); }
+  .title .a { color: #ff7a18; text-shadow: 0 0 26px rgba(255,122,24,0.85); }
+  .plan { font-size: 21px; font-weight: 800; color: #fff; }
+  .plan .gt { color: #ff7a18; }
+  .tag { font-size: 15.5px; color: #b9b2ab; max-width: 660px; line-height: 1.45; }
+  .row { display: flex; align-items: center; gap: 14px; margin-top: 6px; }
+  .verb {
+    font-family: "Cascadia Code", "Consolas", monospace; font-size: 16px; font-weight: 700;
+    color: #1a0f06; background: linear-gradient(180deg, #ffb24d 0%, #ff7a18 100%);
+    padding: 11px 20px; border-radius: 10px; white-space: nowrap;
+    box-shadow: 0 0 0 1px rgba(255,180,80,0.5),
+                0 8px 26px rgba(255,100,20,calc(0.30 + 0.30 * var(--pulse)));
+  }
+  .pills { display: flex; gap: 8px; flex-wrap: wrap; max-width: 720px; }
+  .pill { font-family: "Cascadia Code", "Consolas", monospace; font-size: 12.5px;
+    color: #cdb6a3; border: 1px solid rgba(255,150,70,0.28); border-radius: 999px;
+    padding: 5px 11px; background: rgba(255,140,50,0.05); }
+  .pill.hot { color: #ffce9b; border-color: rgba(255,160,70,0.6); background: rgba(255,140,50,0.12); }
+
+  .brackets { position: absolute; right: 40px; top: 0; height: 400px; width: 360px;
+    display: flex; align-items: center; justify-content: flex-end; z-index: 4;
+    font-family: "Cascadia Code", "Consolas", monospace; color: rgba(255,150,70,0.40);
+    font-size: 15px; line-height: 1.9; white-space: pre; }
+  .repo { position: absolute; right: 26px; bottom: 16px; z-index: 6;
+    font-family: "Cascadia Code", "Consolas", monospace; font-size: 12px; color: #8c7d70; }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="core" id="core"></div>
+    <svg class="circuit" viewBox="0 0 1280 400" fill="none" preserveAspectRatio="none">
+      <g stroke="rgba(255,150,70,0.35)" stroke-width="1.5">
+        <path d="M820 70 H1010 V150 H1120" /><circle cx="1120" cy="150" r="4" fill="#ff7a18" stroke="none"/>
+        <path d="M880 330 H1040 V250 H1180" /><circle cx="1180" cy="250" r="4" fill="#ff7a18" stroke="none"/>
+        <path d="M860 200 H980" /><circle cx="980" cy="200" r="3.5" fill="#ffae6b" stroke="none"/>
+        <path d="M1040 110 V60 H1160" /><circle cx="820" cy="70" r="3.5" fill="#ffae6b" stroke="none"/>
+      </g>
+    </svg>
+    <div class="embers" id="embers"></div>
+
+    <div class="content">
+      <div class="eyebrow">CLAUDE CODE <span class="dot">•</span> 17 SKILLS <span class="dot">•</span> PT-BR</div>
+      <div class="title">F<span class="a">o</span>rger</div>
+      <div class="plan">Plan <span class="gt">&gt;</span> Vibes.</div>
+      <div class="tag">Da ideia ao deploy — e auditoria/melhoria de projeto que já existe.<br/>Você só aprende um verbo:</div>
+      <div class="row">
+        <div class="verb">executa o passo 0X</div>
+      </div>
+      <div class="pills">
+        <span class="pill hot">/dev-start</span>
+        <span class="pill hot">/dev-audit</span>
+        <span class="pill">/dev-stack</span>
+        <span class="pill">/dev-roadmap</span>
+        <span class="pill hot">/dev-next</span>
+        <span class="pill hot">/dev-loop</span>
+        <span class="pill">/dev-status</span>
+        <span class="pill">/dev-ship</span>
+      </div>
+    </div>
+
+    <div class="brackets">{ forge }</div>
+    <div class="repo">github.com/Marcelover777/forger</div>
+  </div>
+
+<script>
+  // Embers determinísticos: sobem à direita, loop perfeito em t∈[0,1).
+  const N = 16, embers = [];
+  const box = document.getElementById('embers');
+  for (let i = 0; i < N; i++) {
+    const e = document.createElement('div');
+    e.className = 'ember';
+    box.appendChild(e);
+    embers.push({ el: e, x: 720 + Math.random() * 520, phase: i / N,
+                  drift: (Math.random() - 0.5) * 40, scale: 0.6 + Math.random() * 1.6 });
+  }
+  const TAU = Math.PI * 2;
+  window.setFrame = function (t) {
+    document.documentElement.style.setProperty('--glow-op', (0.82 + 0.18 * Math.sin(TAU * t)).toFixed(3));
+    document.documentElement.style.setProperty('--glow-x', (76 + 2.5 * Math.sin(TAU * t)).toFixed(2) + '%');
+    document.documentElement.style.setProperty('--pulse', (0.5 + 0.5 * Math.sin(TAU * t)).toFixed(3));
+    for (const e of embers) {
+      const p = (t + e.phase) % 1;            // 0=base, 1=topo
+      const y = 410 - p * 380;
+      const x = e.x + e.drift * p;
+      const op = Math.sin(Math.PI * p) * 0.9; // some no nascimento e no fim
+      e.el.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px) scale(${e.scale.toFixed(2)})`;
+      e.el.style.opacity = op.toFixed(3);
+    }
+  };
+  window.setFrame(0);
+  window.__ready = true;
+</script>
+</body>
+</html>
