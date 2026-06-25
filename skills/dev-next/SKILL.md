@@ -1,6 +1,6 @@
 ---
 name: dev-next
-description: Executa o próximo passo do ROADMAP.md com um verbo só — resolve o primeiro passo não-marcado com dependência satisfeita (fallback "qual o próximo?") ou um passo nomeado. Roda os gates antes de tudo — se faltar chave/config exigida pelo passo, PARA e dá o link exato para resolver, nunca avança bloqueado. Liberado, delega ao ciclo v2 (dev-coding, dev-plan, dev-ship…) executar o .plans/steps/0X-*.md, marca [x] no ROADMAP.md, faz append no .forge/PROGRESS.md, atualiza o .forge/STATUS.md e imprime o próximo passo. Use quando o usuário disser "executa o passo 03", "/dev-next", "qual o próximo passo", "próximo", "continua o roadmap", "manda o próximo", ou pedir para avançar o ROADMAP.md.
+description: Executa o próximo passo do ROADMAP.md com um verbo só — resolve o primeiro passo não-marcado com dependência satisfeita (fallback "qual o próximo?") ou um passo nomeado. Roda os gates antes de tudo — se faltar chave/config exigida pelo passo, PARA e dá o link exato para resolver, nunca avança bloqueado. Liberado, delega ao ciclo v2 (dev-coding, dev-plan, dev-ship…) executar o .plans/steps/0X-*.md, marca [x] no ROADMAP.md, faz append no .forge/PROGRESS.md, atualiza o .forge/STATUS.md e imprime o próximo passo. Também consome o `.forge/BACKLOG.md` — a fila de trabalho NÃO-planejado (bugs, dívida, infra, ideias, achados de `/dev-audit`) — com um seletor determinístico, quando o ROADMAP acabou ou empacou. Use quando o usuário disser "executa o passo 03", "/dev-next", "qual o próximo passo", "próximo", "continua o roadmap", "manda o próximo", "o que falta fazer", "pega o próximo do backlog", "tem algum bug pra resolver", "adiciona no backlog", ou pedir para avançar o ROADMAP.md.
 ---
 
 # /dev-next — Executa o próximo passo (um verbo só)
@@ -36,7 +36,30 @@ Se o passo nomeado não existe no `ROADMAP.md`: pare e liste os passos disponív
 
 **Como ler `depends_on` (determinístico):** a dependência mora no **frontmatter** do `.plans/steps/0X-<slug>.md`, no campo `depends_on` — uma **lista de IDs de passo** (ex.: `depends_on: ["02"]` ou `depends_on: []`). Um passo é **elegível** no fallback quando **todos** os IDs em `depends_on` estão marcados `- [x]` no `ROADMAP.md`. O seletor é: o primeiro `- [ ]`, em ordem numérica, com `depends_on` 100% satisfeito. Sem `depends_on` (`[]`) → elegível assim que for o primeiro `- [ ]`.
 
-### 2. Carregue o passo
+### 1b. Sem passo de roadmap? Consulte o BACKLOG (trabalho não-planejado)
+
+O `/dev-next` resolve **a próxima unidade de trabalho** — um passo do `ROADMAP.md` (planejado) **ou** um item do `.forge/BACKLOG.md` (não-planejado: bug, dívida, infra, chore, ideia; achados de `/dev-audit`). Schema em [BACKLOG-TEMPLATE.md](BACKLOG-TEMPLATE.md). Precedência **fixa**:
+
+1. **Passo do ROADMAP pendente?** → a próxima ação é esse passo. O backlog **não preempta** o roadmap.
+2. **ROADMAP todo `[x]` (ou todos os pendentes bloqueados)?** → consulte o `.forge/BACKLOG.md` e rode o seletor abaixo.
+3. **Exceção P0:** um item `Prio P0` (bug/segurança) pode preemptar — mas só com **CHECKPOINT** explícito (*"tem um P0 no backlog: <item>. Resolvo antes?"*). Nunca troca de trilha em silêncio.
+
+**Seletor de backlog (determinístico, re-executável a olho):**
+
+```
+candidatos = Status ⬜ ready  E  todas as Deps ✅ done  E  Gate vazio-ou-satisfeito
+ordena por:  Prio (P0→P3)  →  nº de Deps (menos primeiro)  →  ID (asc)
+propõe UMA linha, mostra o porquê, e ESPERA confirmação (a seleção é read-only).
+```
+
+- **Melhor candidato com Gate vivo** (chave faltando) → **PARE** e dê o link (mesma mecânica do §3). Não execute.
+- **Só há itens bloqueados** (Dep pendente / Gate vivo) → reporte o que bloqueia cada um; não force.
+- **Fila vazia** → sugira `/dev-audit` (achar trabalho num projeto que já existe) ou voltar ao ROADMAP.
+- `🧊 icebox` não entra na seleção. Item `Tipo: idea` aceito **vira passo do ROADMAP** (CHECKPOINT) — **não** é executado do backlog.
+
+> **Seleção é read-only + confirma.** O item só vira `🏗️ in-progress` (e ganha bloco no PROGRESS) **depois** do "pode ir". Nada muda no disco na fase de seleção.
+
+### 2. Carregue o passo (ou o item)
 
 **Read** `.plans/steps/0X-<slug>.md` integralmente. Dele saem:
 - **objetivo observável** do passo;
@@ -88,6 +111,17 @@ Gate verde. Anuncie em 1 linha: *"passo 0X liberado — vou acionar `/dev-<skill
 
 **Não reimplemente o motor.** O `/dev-coding` já faz guarda de escopo, protocolo de drift, commits atômicos `[task-XX]` e verificação dura. Você só decide qual passo e o aciona.
 
+**Item do BACKLOG (não um passo)?** Delegue pelo `Tipo`:
+
+| Tipo do item | Delegue a |
+|--------------|-----------|
+| `bug` | `/dev-fix` (triagem → reproduz → fix + regressão) |
+| `debt` / `chore` | `/dev-coding` direto (ou `/dev-plan` antes, se for >1 task) |
+| `infra` | `/dev-setup` (se é chave/integração) ou `/dev-coding` (se é código) |
+| `idea` | **NÃO execute** — promova a passo do ROADMAP (CHECKPOINT) e feche a linha |
+
+O `Aceite` da linha do backlog **é** o critério verde do item (o `must_pass` dele).
+
 Se a execução **falhar** (must_pass vermelho, checkpoint reprovado): **não marque `[x]`**. Reporte o que quebrou, faça append do bloqueio no `PROGRESS.md` e sugira `/dev-fix`. Passo só vira `[x]` quando a execução fecha verde de verdade.
 
 ### 5. Registre (só após verde)
@@ -107,13 +141,15 @@ Em ordem, sem acumular pro fim:
 
 3. **`.forge/STATUS.md`** — atualize o painel (delegue ao `/dev-status` se preferir o painel completo; no mínimo, reflita o novo % de passos done).
 
+**Se a unidade veio do BACKLOG** (não é um passo): em vez do `[x]` no ROADMAP, marque a linha `✅ done` no `.forge/BACKLOG.md` e use o `B-NNN` como identificador no bloco do `PROGRESS.md`. `idea` promovida → feche a linha do backlog **e** crie o passo no ROADMAP. Arquivar linhas `✅` frias para `.forge/BACKLOG.archive.md` é ação explícita (groom), nunca efeito colateral daqui.
+
 ### 6. Aponte o próximo
 
 Termine sempre dizendo, em 1 linha, qual o próximo passo `- [ ]` com dependência satisfeita:
 
 > **próximo: executa o passo 04 — <título>**
 
-Se o próximo já tem gate que vai bloquear (você sabe pelo `SETUP.md`), avise junto: *"o passo 04 vai precisar de `STRIPE_SECRET_KEY` — pode adiantar pegando em https://dashboard.stripe.com/apikeys."* Se acabou o roadmap, diga isso e sugira `/dev-ship`.
+Se o próximo já tem gate que vai bloquear (você sabe pelo `SETUP.md`), avise junto: *"o passo 04 vai precisar de `STRIPE_SECRET_KEY` — pode adiantar pegando em https://dashboard.stripe.com/apikeys."* Se acabou o roadmap, diga isso e sugira `/dev-ship`. Se a unidade veio do backlog, aponte o próximo candidato do seletor (ou diga que a fila esvaziou — e sugira `/dev-audit` se for um projeto a melhorar).
 
 ## Anti-padrões
 
@@ -126,6 +162,10 @@ Se o próximo já tem gate que vai bloquear (você sabe pelo `SETUP.md`), avise 
 - ❌ Ecoar o valor de uma env var ao checar o `.env.local` (só o nome importa)
 - ❌ Adivinhar um passo nomeado que não existe no `ROADMAP.md`
 - ❌ Forçar a ordem quando o usuário nomeou um passo — avise a dependência, mas é decisão dele
+- ❌ Deixar o backlog preemptar o ROADMAP sem CHECKPOINT (exceto P0, e mesmo assim com confirmação)
+- ❌ Executar um item `idea` do backlog em vez de promovê-lo a passo do ROADMAP
+- ❌ Marcar `✅` um item do backlog sem o `Aceite` verde
+- ❌ Tratar "bloqueado" como `Status` no backlog (bloqueio deriva de `Deps` + `Gate`)
 
 ## Quando cair pra prosa normal (auto-clarity)
 

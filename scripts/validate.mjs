@@ -101,6 +101,64 @@ for (const skill of skills) {
   }
 }
 
+// --- 4b. Integridade do BACKLOG.md de exemplo (se houver) ------------------
+// O backlog real é per-project; aqui validamos os exemplos versionados em
+// examples/<x>/.forge/BACKLOG.md — a régua que o /dev-next e o /dev-audit seguem.
+const TIPOS_BACKLOG = new Set(["bug", "debt", "infra", "chore", "idea"]); // 'feat' proibido
+const COLS_BACKLOG = ["ID", "Item", "Tipo", "Origem", "Prio", "Status", "Deps", "Gate", "Aceite"];
+
+function validateBacklog(relPath) {
+  const lines = read(relPath).split("\n");
+  const cells = (l) => l.split("|").slice(1, -1).map((c) => c.trim());
+  const headerIdx = lines.findIndex(
+    (l) => /^\s*\|/.test(l) && /\bID\b/.test(l) && /Aceite/.test(l),
+  );
+  if (headerIdx === -1) {
+    fail(`${relPath}: tabela do backlog não encontrada (cabeçalho ID…Aceite)`);
+    return;
+  }
+  const header = cells(lines[headerIdx]).map((c) => c.replace(/\s*\(.*\)\s*/, "").trim());
+  for (const c of COLS_BACKLOG)
+    if (!header.includes(c)) fail(`${relPath}: coluna obrigatória ausente: '${c}'`);
+  const col = (name) => header.indexOf(name);
+
+  const ids = new Set();
+  const rows = [];
+  for (let i = headerIdx + 1; i < lines.length; i++) {
+    if (!/^\s*\|/.test(lines[i])) break; // fim da tabela
+    const c = cells(lines[i]);
+    if (c.every((x) => /^:?-+:?$/.test(x))) continue; // linha separadora
+    if (c.length < COLS_BACKLOG.length) continue;
+    rows.push(c);
+    const id = c[col("ID")];
+    if (ids.has(id)) fail(`${relPath}: ID duplicado '${id}'`);
+    ids.add(id);
+  }
+  for (const c of rows) {
+    const id = c[col("ID")];
+    const get = (n) => c[col(n)];
+    if (!TIPOS_BACKLOG.has(get("Tipo")))
+      fail(`${relPath}: ${id}: Tipo '${get("Tipo")}' inválido ('feat' proibido; use ${[...TIPOS_BACKLOG].join("|")})`);
+    if (!get("Origem") || get("Origem") === "—") fail(`${relPath}: ${id}: Origem obrigatória`);
+    if (!get("Aceite") || get("Aceite") === "—") fail(`${relPath}: ${id}: Aceite (verificável) obrigatório`);
+    if (/⛔|gate/i.test(get("Status")) && (!get("Gate") || get("Gate") === "—"))
+      fail(`${relPath}: ${id}: Status indica gate mas a coluna Gate está vazia`);
+    const deps = get("Deps");
+    if (deps && deps !== "—")
+      for (const dep of deps.split(/[,\s]+/).filter(Boolean))
+        if (/^B-\d+$/.test(dep) && !ids.has(dep))
+          fail(`${relPath}: ${id}: Dep '${dep}' não existe no backlog`);
+  }
+}
+
+const examplesDir = join(ROOT, "examples");
+if (existsSync(examplesDir)) {
+  for (const ex of readdirSync(examplesDir)) {
+    const bl = join("examples", ex, ".forge", "BACKLOG.md");
+    if (has(bl)) validateBacklog(bl);
+  }
+}
+
 // --- 5. Arquivos-âncora existem --------------------------------------------
 for (const f of ["LICENSE", "INSTALL.md", "CHANGELOG.md", "README.md", "README.en.md"]) {
   if (!has(f)) fail(`${f}: ausente`);
